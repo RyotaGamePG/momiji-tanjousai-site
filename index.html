@@ -761,30 +761,13 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
 .sp-bar{display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:var(--gold-hi);padding:8px 14px;font-weight:900}
 .sp-bar button{font:inherit;font-weight:900;border:1px solid var(--gold);background:transparent;color:var(--gold-hi);padding:2px 14px;cursor:pointer}
 
-/* ---------- 演出番号 ---------- */
-.shotno{position:absolute;left:1.5%;top:4.5%;z-index:12;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.72);color:#fff;font-size:12px;font-weight:700;padding:3px 10px 3px 3px;border:1px solid rgba(255,255,255,.35);max-width:70%;pointer-events:none}
-.shotno:empty{display:none}
-.shotno b{background:var(--gold);color:#000;font-family:var(--f-num);font-weight:400;font-size:15px;padding:0 6px;letter-spacing:.04em}
-.kv.nohud .shotno{display:none}
-.cues{max-width:1300px;margin:0 auto;padding:14px 16px 18px;display:flex;flex-direction:column;gap:10px}
-.cues-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:13px}
-.cues-head b{font-family:var(--f-display);font-weight:400;font-size:18px}
-.cues-head span{color:var(--muted)}
-.cues-head button{margin-left:auto;font:inherit;font-weight:900;font-size:12px;border:1px solid var(--ink);background:#fff;padding:3px 12px;cursor:pointer}
-.cuelist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px}
-.cuelist button{display:flex;align-items:center;gap:8px;text-align:left;font:inherit;font-size:12.5px;font-weight:700;line-height:1.35;background:#fff;border:1px solid var(--line);padding:6px 10px 6px 6px;cursor:pointer;color:var(--ink);min-width:0}
-.cuelist button b{flex:none;font-family:var(--f-num);font-weight:400;font-size:15px;background:var(--ink);color:#fff;padding:1px 6px}
-.cuelist button:hover{border-color:var(--red)}
-.cuelist button.now{border-color:var(--red);background:#fff1f3}
-.cuelist button.now b{background:var(--red)}
-
 /* ---------- PROMOTION MOVIE（ページ内で再生するCM） ---------- */
 .pv{position:relative;width:100%;max-width:960px;margin:0 auto;background:#000;container-type:inline-size;box-shadow:0 0 0 3px var(--gold),0 6px 0 6px rgba(0,0,0,.15)}
 .pvstage{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:#000;font-family:"Noto Sans JP","Hiragino Sans",sans-serif}
 .pv .sc{position:absolute;inset:0;display:none;overflow:hidden}
 .pv .sc.on{display:block}
 .pv .mincho{font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:900}
-/* CM-1 導入 */
+/* CMの導入 */
 .pv .c1{background:#050505}
 .pv .c1 .bgp{position:absolute;left:50%;bottom:-40%;height:170%;width:auto;max-width:none;translate:-50% 0;filter:grayscale(1) contrast(1.2) brightness(.65);animation:pvpush 4.5s linear both}
 @keyframes pvpush{from{transform:scale(1)}to{transform:scale(1.12)}}
@@ -884,7 +867,6 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
 .pv .pvplay small{font-size:1.4cqw;font-weight:700;text-shadow:0 2px 6px rgba(0,0,0,.6)}
 .pv.playing .pvplay{display:none}
 .pv .pvbar{display:flex;align-items:center;gap:10px;padding:8px 10px;background:#111;color:#fff;font-size:12px}
-.pv .pvno{font-family:"Anton",sans-serif;font-size:14px;background:var(--gold);color:#000;padding:0 6px;letter-spacing:.04em}
 .pv .pvprog{flex:1;height:4px;background:#333;min-width:0}
 .pv .pvprog i{display:block;height:100%;width:0;background:#e60023}
 .pv .pvtime{font-variant-numeric:tabular-nums}
@@ -962,8 +944,6 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
   .gnav a{min-height:38px;padding:3px 14px;font-size:11px;white-space:nowrap;margin:5px 4px}
   .gnav a small{display:inline;margin-left:4px;font-size:.85em}
   .gnav a br{display:none}
-  .shotno{font-size:10px;max-width:62%;padding:2px 6px 2px 2px}
-  .shotno b{font-size:12px}
   .kv .s2 .w{font-size:31cqw}
   .kv .s4 .w{font-size:21cqw}
   .kv .s7 .w:nth-child(1){left:6%!important;top:16%!important;font-size:8cqw!important}
@@ -1092,8 +1072,8 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
 /* ---------- スタッフ（2人の名前を別の行に） ---------- */
 .cr1 .name + .name{margin-top:-2px}
 
-/* ---------- 確認用の演出番号を表示しない ---------- */
-.shotno,.cues{display:none!important}
+
+
 
 /* ---------- スペック：誕生日の背景・「7」の欠け修正 ---------- */
 .slab .v,.kpi .kv2,.pv .n,.g3{padding-right:.14em}
@@ -1245,13 +1225,8 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
       <div class="shock"></div>
       <div class="flash"></div>
     </div>
-    <div class="shotno" id="shotno" aria-live="off"></div>
     <button class="skip" id="skip" type="button">SKIP ▶▶</button>
     <button class="replay" id="replay" type="button">▶ もう一度見る</button>
-  </div>
-  <div class="cues">
-    <div class="cues-head"><b>演出番号</b><span>気になる所は番号で伝えてください。押すとその番号から再生します。</span><button type="button" id="notoggle">番号を隠す</button></div>
-    <div class="cuelist" id="cuelist"></div>
   </div>
 </section>
 
@@ -1324,9 +1299,8 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
         <div class="pvflash" id="pvflash"></div>
       </div>
       <button type="button" class="pvplay" id="pvplay" aria-label="CMを再生"><span>▶</span><b>PROMOTION MOVIE</b><small>約49秒・音なし</small></button>
-      <div class="pvbar"><span class="pvno" id="pvno">CM-10</span><div class="pvprog"><i id="pvprog"></i></div><span class="pvtime" id="pvtime">0:00</span><button type="button" id="pvreplay">最初から</button></div>
+      <div class="pvbar"><div class="pvprog"><i id="pvprog"></i></div><span class="pvtime" id="pvtime">0:00</span><button type="button" id="pvreplay">最初から</button></div>
     </div>
-    <p class="note" style="text-align:center">場面ごとに CM-1〜CM-11 の番号を表示しています。気になる場面は番号で伝えてください。</p>
   </div>
 </section>
 
@@ -1568,14 +1542,7 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
   var shots=[].slice.call(kv.querySelectorAll(".shot")),cf=document.getElementById("cutflash"),cnt=document.getElementById("cnt");
   function countUp(ms){var t0=performance.now();(function step(){var k=Math.min(1,(performance.now()-t0)/ms),e=1-Math.pow(1-k,3);
     cnt.textContent=Math.round(1010*e).toLocaleString("en-US");if(k<1&&running)requestAnimationFrame(step)})()}
-  var CUES=["赤い衝撃「誕生祭」→ 黒い題字「第弐拾伍話 アラサーへの咆哮」","写真が透ける「KOYO」","単語の壁「確定」","横ブレ「アラサー」","ROAR＋「咆哮」","字間が詰まる「誕生日」","散らばる「おめでとう」","写真の連打 → 寄せ書き「みんなで、祝え。」","漢字の叩きつけ「人・生・確・変」→「人生、確変中。」","筐体と注釈「THE MACHINE」","カウント「1,010玉」","完成：閃光・赤いパネル・本人登場","完成：コピー「今夜祝わないといけない男がいる。」・ロゴ","完成：バッジ・筐体カード・下の帯","完成：ずっと動く背景（走査線・粒子・ロゴの光・流れる帯）"];
-  var LBL=["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15"],R0=CUES.length-4;
-  var noEl=document.getElementById("shotno"),list=document.getElementById("cuelist");
-  function pad(n){return (n<10?"0":"")+n}
-  function cue(i){noEl.innerHTML="<b>#"+LBL[i]+"</b>"+CUES[i];
-    list.querySelectorAll("button").forEach(function(btn,k){btn.classList.toggle("now",k===i)})}
-  CUES.forEach(function(c,i){var btn=document.createElement("button");btn.type="button";btn.innerHTML="<b>"+LBL[i]+"</b>"+c;
-    btn.addEventListener("click",function(){playKV(i);kv.scrollIntoView({behavior:"smooth",block:"start"})});list.appendChild(btn)});
+  var R0=11;function cue(){}
   /* #08B 写真の連打 */
   var STROBE=["pf1.jpg","pf2.jpg","pf3.jpg","pf4.jpg","pf5.jpg","pf6.jpg","pf7.jpg","pf8.jpg","pf9.jpg"];
   STROBE.forEach(function(f){var im=new Image();im.src="img/"+f});
@@ -1620,11 +1587,6 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
     });
     at(t,reveal);
   }
-  /* 番号の表示切り替え */
-  var NK="momiji-shotno-hide",tg=document.getElementById("notoggle");
-  function setNo(hide){kv.classList.toggle("nohud",hide);tg.textContent=hide?"番号を表示":"番号を隠す";try{hide?localStorage.setItem(NK,"1"):localStorage.removeItem(NK)}catch(e){}}
-  var hid=false;try{hid=localStorage.getItem(NK)==="1"}catch(e){}
-  setNo(hid);tg.addEventListener("click",function(){setNo(!kv.classList.contains("nohud"))});
   window.addEventListener("resize",function(){if(running)size()});
   document.getElementById("skip").addEventListener("click",reveal);
 
@@ -1637,7 +1599,6 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
     pvscs.forEach(function(s){s.classList.toggle("on",s===sc)});
     pvks.forEach(function(o){if(o!==k){o.classList.remove("on");o.querySelectorAll("video").forEach(function(v){v.pause()})}});
     k.classList.remove("on");void k.offsetWidth;k.classList.add("on");
-    document.getElementById("pvno").textContent="CM-"+sc.getAttribute("data-no");
     k.querySelectorAll("video").forEach(function(v){try{v.currentTime=0}catch(e){} if(play){var p=v.play();if(p&&p.catch)p.catch(function(){})}});
     if(play&&k.hasAttribute("data-flash")){pvfl.classList.remove("on");void pvfl.offsetWidth;pvfl.classList.add("on")}
   }
@@ -1659,7 +1620,7 @@ footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:
     pages.forEach(function(p){document.getElementById("p-"+p).classList.toggle("on",p===id)});
     document.querySelectorAll(".gnav a").forEach(function(a){
       if(a.getAttribute("href")==="#"+id)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
-    if(id==="top"){var cq=/[?&]cue=(\d+)/.exec(location.search);playKV(cq?+cq[1]:0)}else{running=false;timers.forEach(clearTimeout)}
+    if(id==="top"){playKV(0)}else{running=false;timers.forEach(clearTimeout)}
     if(id!=="pv")pvRest();
   }
   function current(){return (location.hash||"#top").slice(1)}
