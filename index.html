@@ -1,0 +1,1682 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pもみじ誕生祭 ヨシノコウヨウ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Zen+Old+Mincho:wght@700;900&family=Josefin+Sans:wght@300;400&family=Anton&family=Archivo+Black&family=Noto+Sans+JP:wght@700;900&display=swap">
+<style>
+/* Layout: メーカー機種サイト型。赤い上部帯 → 2段×7のボタンメニュー → ページごとのメイン画像 → 金枠の見出し帯 → 中身。ページはメニューで切り替え（#token）。 */
+:root{
+  --red:#e6001e; --red-d:#9c0014; --pink:#f26a7b; --pink-l:#ffd6dc;
+  --gold:#ffcf3a; --gold-d:#b87900; --gold-hi:#fff4c2;
+  --teal:#2bb7b3; --navy:#16224a; --violet:#6b2fd6;
+  --paper:#fbf7f4; --ink:#1b1220; --muted:#6c6070; --line:#e7d9dc;
+  --f-display:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --f-mincho:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-latin:"Josefin Sans","Futura","Century Gothic",sans-serif;
+  --f-num:"Anton","Impact",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.75;overflow-x:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;text-wrap:balance}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* ---------- 上部の赤い帯 ---------- */
+.gbar{background:var(--red);height:56px;display:flex;align-items:center;padding-inline:16px}
+.gmark{display:flex;align-items:center;gap:6px;color:#fff;text-decoration:none;line-height:1}
+.gmark svg{width:30px;height:30px}
+.gmark span{font-family:var(--f-latin);font-size:11px;letter-spacing:.06em}
+
+/* ---------- 2段×7のボタンメニュー ---------- */
+.gnav{background:
+  repeating-linear-gradient(45deg,rgba(255,255,255,.55) 0 14px,transparent 14px 28px),
+  linear-gradient(90deg,#fde3e7,#e3f6f5 50%,#fde3e7);border-bottom:3px solid var(--gold);padding:8px 16px}
+.gnav ul{list-style:none;margin:0 auto;padding:0;max-width:1300px;display:grid;grid-template-columns:repeat(8,1fr);gap:6px 4px}
+.gnav a{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;min-height:56px;padding:4px 10px;text-decoration:none;
+  border-radius:999px;color:#fff;font-weight:900;font-size:clamp(11px,1.15vw,16px);line-height:1.15;
+  background:linear-gradient(180deg,#ff9aa6 0%,var(--pink) 45%,#d8394d 100%);
+  box-shadow:0 0 0 3px #fff3cf,0 0 0 5px var(--gold-d),0 4px 0 6px rgba(120,40,0,.25), inset 0 2px 0 rgba(255,255,255,.6);
+  text-shadow:0 1px 0 #7a0012,1px 0 0 #7a0012,-1px 0 0 #7a0012,0 -1px 0 #7a0012;margin:5px}
+.gnav a small{display:block;font-size:.72em}
+.gnav a:hover{filter:brightness(1.08)}
+.gnav a[aria-current="page"]{background:linear-gradient(180deg,#ff3b4e,var(--red) 50%,#8a0010);color:var(--gold-hi)}
+.gnav a::after{content:"";position:absolute;right:-4px;top:50%;width:12px;height:16px;margin-top:-8px;background:var(--red-d);clip-path:polygon(0 0,100% 50%,0 100%);opacity:.0}
+
+/* ---------- ページ切り替え ---------- */
+.page{display:none}
+.page.on{display:block;animation:pagein .35s ease-out}
+@keyframes pagein{from{opacity:.4}to{opacity:1}}
+
+/* ---------- TOP キービジュアル（タイポグラフィのオープニング → 完成画面） ---------- */
+/* Shot plan: 0.5秒前後で切る単語ショット×7 → まとめ文 → 数字 → マーカー帯 → 閃光 → 完成画面。サイズは cqw（KVの幅基準） */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fin{to{opacity:1}}
+.kv{position:relative;overflow:hidden;background:#05030f;aspect-ratio:1300/700;max-height:780px;width:100%;max-width:100%;isolation:isolate;container-type:inline-size;
+  --cy:#29e6ff;--mg:#ff2fa8;--gd:#ffcf3a;--vi:#7b3cff;--wh:#f7f5fb;
+  --f-jp:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;--f-en:"Archivo Black","Anton","Arial Black",sans-serif}
+.kv *{pointer-events:none}
+.kv a,.kv button{pointer-events:auto}
+.stage{position:absolute;inset:0}
+
+/* ===== 完成画面（背景・本人） ===== */
+.kbg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 60% 70% at 62% 55%,#3a1470 0%,transparent 70%),
+  radial-gradient(ellipse 50% 60% at 15% 90%,rgba(41,230,255,.18) 0%,transparent 70%),
+  linear-gradient(160deg,#0b0726 0%,#1a0b3d 55%,#070414 100%)}
+.hex{position:absolute;inset:-60px;opacity:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104' viewBox='0 0 60 104'%3E%3Cpath d='M30 0L60 17.3V52L30 69.3L0 52V17.3Z M30 69.3V104' fill='none' stroke='%2329e6ff' stroke-width='1.3'/%3E%3C/svg%3E");
+  background-size:44px 76px;
+  -webkit-mask-image:radial-gradient(circle at var(--hx,60%) var(--hy,50%),#000 0%,rgba(0,0,0,.35) 30%,transparent 62%);
+          mask-image:radial-gradient(circle at var(--hx,60%) var(--hy,50%),#000 0%,rgba(0,0,0,.35) 30%,transparent 62%);
+  animation:hexdrift 14s linear infinite}
+@keyframes hexdrift{to{background-position:0 -152px}}
+.kv canvas{position:absolute;inset:0;width:100%;height:100%;z-index:6;mix-blend-mode:screen}
+.streaks{position:absolute;inset:0;overflow:hidden;opacity:0}
+.streaks i{position:absolute;left:-40%;width:40%;height:2px;background:linear-gradient(90deg,transparent,var(--cy),#fff);filter:drop-shadow(0 0 6px var(--cy));transform:rotate(-18deg);animation:streak 3.2s linear infinite}
+.streaks i:nth-child(1){top:20%;animation-delay:.2s}
+.streaks i:nth-child(2){top:48%;animation-delay:1.3s;background:linear-gradient(90deg,transparent,var(--mg),#fff);filter:drop-shadow(0 0 6px var(--mg))}
+.streaks i:nth-child(3){top:76%;animation-delay:2.1s;background:linear-gradient(90deg,transparent,var(--gd),#fff);filter:drop-shadow(0 0 6px var(--gd))}
+.streaks i:nth-child(4){top:62%;animation-delay:.7s;height:1px}
+@keyframes streak{to{left:140%}}
+.full{position:absolute;inset:0;opacity:0}
+.halo{position:absolute;right:14%;top:8%;width:46%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,207,58,.45) 0%,rgba(255,47,168,.28) 35%,rgba(123,60,255,.18) 55%,transparent 70%);filter:blur(6px);animation:breathe 3.6s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.08);opacity:.8}}
+.rings{position:absolute;right:16%;top:12%;width:42%;aspect-ratio:1}
+.rings i{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(41,230,255,.55);animation:ringout 3s ease-out infinite;opacity:0}
+.rings i:nth-child(2){animation-delay:1s;border-color:rgba(255,47,168,.5)}
+.rings i:nth-child(3){animation-delay:2s;border-color:rgba(255,207,58,.55)}
+@keyframes ringout{0%{transform:scale(.4);opacity:0}15%{opacity:1}100%{transform:scale(1.35);opacity:0}}
+.orbit{position:absolute;right:20%;top:16%;width:34%;aspect-ratio:1;border-radius:50%;border:1px dashed rgba(255,255,255,.25);animation:spin 24s linear infinite}
+.orbit::before{content:"";position:absolute;left:50%;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--gd);box-shadow:0 0 14px 4px var(--gd)}
+.num25{position:absolute;right:1%;top:2%;font-family:var(--f-en);font-size:22cqw;line-height:.85;color:transparent;-webkit-text-stroke:2px rgba(41,230,255,.45);letter-spacing:-.04em}
+.person{position:absolute;right:21%;bottom:-6%;height:112%;width:auto;max-width:none;
+  filter:drop-shadow(0 0 2px #fff) drop-shadow(0 0 18px rgba(41,230,255,.75)) drop-shadow(14px 0 0 rgba(255,47,168,.35))}
+.floor{position:absolute;left:0;right:0;bottom:0;height:22%;
+  border-top:1px solid rgba(41,230,255,.35);transform-origin:bottom;transform:perspective(400px) rotateX(55deg);
+  background-image:linear-gradient(90deg,rgba(41,230,255,.25) 1px,transparent 1px);background-size:60px 100%;animation:floor 1.6s linear infinite}
+@keyframes floor{to{background-position:60px 0}}
+
+/* ===== 完成画面の前面（文字・ロゴ・バナー） ===== */
+.ticker2{position:absolute;left:0;right:0;top:0;z-index:5;overflow:hidden;white-space:nowrap;border-bottom:1px solid rgba(41,230,255,.35);background:rgba(5,3,15,.55);opacity:0}
+.ticker2 div{display:inline-block;font-family:var(--f-en);font-size:1.05cqw;letter-spacing:.4em;color:rgba(255,255,255,.75);padding:.5cqw 0;animation:tick2 22s linear infinite}
+.ticker2 b{color:var(--gd);font-weight:400}
+@keyframes tick2{to{transform:translateX(-50%)}}
+.vcopy{position:absolute;right:12.5%;top:9%;writing-mode:vertical-rl;font-family:var(--f-jp);font-weight:900;font-size:2.5cqw;letter-spacing:.24em;color:#fff;z-index:5;text-shadow:0 0 12px rgba(41,230,255,.8)}
+.vcopy em{font-style:normal;color:var(--gd);text-shadow:0 0 14px rgba(255,207,58,.9)}
+.vcopy .ch{opacity:0;display:inline-block}
+.endtype{position:absolute;left:3%;top:13%;z-index:5;font-family:var(--f-en);line-height:.86;color:#fff;font-size:6.4cqw;letter-spacing:-.01em}
+.endtype span{display:block;overflow:hidden}
+.endtype span i{display:block;font-style:normal;transform:translateY(105%)}
+.endtype span:nth-child(2) i{color:transparent;-webkit-text-stroke:1.5px #fff}
+.endtype span:nth-child(3) i{background:linear-gradient(90deg,var(--cy),var(--mg) 55%,var(--gd));-webkit-background-clip:text;background-clip:text;color:transparent}
+.endtype small{display:block;font-family:var(--f-jp);font-weight:700;font-size:1.05cqw;letter-spacing:.5em;color:rgba(255,255,255,.7);margin-top:1.2cqw;opacity:0}
+.logowrap{position:absolute;left:3%;bottom:17%;width:36%;z-index:5;opacity:0}
+.kvlogo{width:100%;filter:drop-shadow(0 0 2px #fff) drop-shadow(0 6px 14px rgba(0,0,0,.6))}
+.logowrap .shine{position:absolute;inset:0;-webkit-mask:url("img/kvlogo.webp") center/contain no-repeat;mask:url("img/kvlogo.webp") center/contain no-repeat;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.95) 48%,transparent 60%) no-repeat;background-size:250% 100%;background-position:150% 0}
+.kvbadges{position:absolute;left:3%;bottom:4%;display:flex;gap:8px;flex-wrap:wrap;max-width:48%;z-index:5}
+.kvbadges span{font-weight:900;font-size:clamp(9px,1cqw,13px);padding:4px 10px;border:1.5px solid var(--cy);background:rgba(5,3,15,.7);color:#fff;line-height:1.2;opacity:0;box-shadow:0 0 10px rgba(41,230,255,.5)}
+.kvbadges span.f{background:var(--mg);border-color:#fff}
+.kvbadges span.g{background:linear-gradient(180deg,#fff4c2,var(--gd));border-color:#fff;color:#4a2000}
+.kvside{position:absolute;right:1.5%;bottom:4%;width:21%;display:flex;flex-direction:column;gap:8px;z-index:5}
+.bnr{display:block;text-decoration:none;border:1.5px solid rgba(255,255,255,.8);background:rgba(10,8,40,.8);color:#fff;padding:8px 10px;font-weight:900;line-height:1.3;font-size:clamp(10px,1.05cqw,14px);opacity:0;backdrop-filter:blur(4px)}
+.bnr b{display:block;font-family:var(--f-display);font-weight:400;font-size:1.35em;color:var(--gd)}
+.bnr.red{background:linear-gradient(135deg,var(--mg),#ff2f6b)}
+.bnr.red b{color:#fff}
+.copyr{position:absolute;left:3%;bottom:12.5%;font-size:10px;color:rgba(255,255,255,.55);opacity:0;z-index:5}
+.replay{position:absolute;right:1.5%;top:4.2%;z-index:12;font-size:11px;font-weight:900;border:1px solid rgba(255,255,255,.5);background:rgba(5,3,15,.6);padding:3px 12px;border-radius:999px;cursor:pointer;color:#fff}
+.skip{position:absolute;right:1.5%;bottom:3%;z-index:12;font-family:var(--f-en);font-size:11px;letter-spacing:.3em;border:1px solid rgba(255,255,255,.6);background:rgba(5,3,15,.5);padding:4px 14px;cursor:pointer;color:#fff}
+.kv.reveal .skip,.kv.rest .skip{display:none}
+
+/* ===== タイポグラフィのショット ===== */
+.shots{position:absolute;inset:0;z-index:7}
+.shot{position:absolute;inset:0;display:none;overflow:hidden}
+.shot.on{display:block}
+.duo{position:absolute;inset:-4%;background-size:cover;background-position:center;filter:grayscale(1) contrast(1.25) brightness(.85);animation:push 1.6s linear both}
+.tint{position:absolute;inset:0;mix-blend-mode:color;background:linear-gradient(120deg,var(--vi),var(--mg))}
+.tint.cy{background:linear-gradient(120deg,#0b3cff,var(--cy))}
+@keyframes push{from{transform:scale(1.12)}to{transform:scale(1)}}
+.scrim{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.55) 100%)}
+.jp{font-family:var(--f-jp);font-weight:900;line-height:1;letter-spacing:.02em;white-space:nowrap}
+.en{font-family:var(--f-en);line-height:.82;white-space:nowrap;text-transform:uppercase}
+.center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center}
+
+/* S1 グリッチ */
+.s6 .duo,.s8 .duo{filter:grayscale(1) contrast(1.3) brightness(.4) blur(3px)}
+.s1 .duo{filter:grayscale(1) contrast(1.3) brightness(.45) blur(2px)}
+.s1 .w{font-size:16cqw;color:#fff;position:relative;animation:glitch .5s steps(1) both}
+.s1 .w::before,.s1 .w::after{content:attr(data-t);position:absolute;inset:0}
+.s1 .w::before{color:var(--mg);transform:translate(-1.2cqw,0);mix-blend-mode:screen;clip-path:inset(10% 0 55% 0);animation:gl1 .5s steps(1) both}
+.s1 .w::after{color:var(--cy);transform:translate(1.2cqw,0);mix-blend-mode:screen;clip-path:inset(60% 0 5% 0);animation:gl2 .5s steps(1) both}
+@keyframes glitch{0%{transform:translateX(-3cqw) skewX(-20deg);opacity:0}12%{opacity:1;transform:translateX(1cqw) skewX(8deg)}24%{transform:none}70%{transform:none}80%{transform:translateX(-1.5cqw)}90%{transform:translateX(2cqw) skewX(-12deg)}}
+@keyframes gl1{0%{clip-path:inset(0 0 80% 0)}20%{clip-path:inset(40% 0 30% 0);transform:translate(-2cqw,0)}50%{clip-path:inset(15% 0 60% 0);transform:translate(-.6cqw,0)}80%{clip-path:inset(70% 0 0 0);transform:translate(-3cqw,0)}}
+@keyframes gl2{0%{clip-path:inset(80% 0 0 0)}25%{clip-path:inset(10% 0 70% 0);transform:translate(2cqw,0)}55%{clip-path:inset(50% 0 20% 0);transform:translate(.8cqw,0)}85%{clip-path:inset(0 0 85% 0);transform:translate(3cqw,0)}}
+.s1 .scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 2px,transparent 2px 4px)}
+.s1 .tc{position:absolute;left:3%;bottom:6%;font-family:var(--f-en);font-size:1.2cqw;letter-spacing:.3em;color:var(--cy)}
+
+/* S2 写真が透ける巨大文字 */
+.s2{background:var(--wh)}
+.s2 .w{font-size:33cqw;letter-spacing:-.04em;color:transparent;background:url("img/face.webp") center 30%/52% auto,linear-gradient(#222,#222);-webkit-background-clip:text;background-clip:text;
+  filter:grayscale(1) contrast(1.3);animation:zoomout .5s cubic-bezier(.1,.9,.2,1) both}
+@keyframes zoomout{from{transform:scale(1.5);letter-spacing:.1em}to{transform:scale(1);letter-spacing:-.04em}}
+.s2 .lbl{position:absolute;left:3%;top:6%;font-family:var(--f-en);font-size:1.3cqw;letter-spacing:.4em;color:#111}
+
+/* S3 単語の壁 */
+.s3{background:#fff}
+.s3 .wall{position:absolute;inset:-6% -10%;display:flex;flex-direction:column;justify-content:center}
+.s3 .row{display:flex;gap:1.5cqw;font-size:11.5cqw;line-height:1.02}
+.s3 .row span{background:linear-gradient(90deg,var(--cy),#2a5bff 50%,var(--mg));-webkit-background-clip:text;background-clip:text;color:transparent}
+.s3 .row:nth-child(odd){animation:rowL .5s linear both}
+.s3 .row:nth-child(even){animation:rowR .5s linear both}
+@keyframes rowL{from{transform:translateX(0)}to{transform:translateX(-8cqw)}}
+@keyframes rowR{from{transform:translateX(-12cqw)}to{transform:translateX(-4cqw)}}
+.s3 .row span{animation:popin .22s cubic-bezier(.2,1.6,.4,1) both;animation-delay:calc(var(--i)*.008s)}
+@keyframes popin{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+
+/* S4 横ブレで滑り込む */
+.s4{background:var(--wh)}
+.s4 .w{font-size:21cqw;color:#111;animation:blurin .45s cubic-bezier(.1,.9,.2,1) both}
+@keyframes blurin{0%{transform:translateX(60cqw) skewX(-25deg);filter:blur(1.4cqw);opacity:.2}55%{filter:blur(.3cqw)}100%{transform:none;filter:none;opacity:1}}
+.s4 .bar{position:absolute;left:0;top:50%;height:.5cqw;width:100%;background:var(--mg);transform-origin:left;animation:bar .45s cubic-bezier(.7,0,.2,1) both;margin-top:12.5cqw}
+@keyframes bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* S5 英語のゴースト＋日本語の核 */
+.s5 .ghost{position:absolute;left:0;font-size:24cqw;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.55)}
+.s5 .ghost.a{top:-2%;animation:ghostL .55s linear both}
+.s5 .ghost.b{bottom:-6%;animation:ghostR .55s linear both}
+@keyframes ghostL{from{transform:translateX(-4cqw)}to{transform:translateX(-16cqw)}}
+@keyframes ghostR{from{transform:translateX(-30cqw)}to{transform:translateX(-18cqw)}}
+.s5 .w{font-size:15cqw;color:#fff;letter-spacing:.1em;text-shadow:0 0 3cqw rgba(255,47,168,.8);animation:slamS .3s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes slamS{from{transform:scale(2.2);opacity:0}to{transform:none;opacity:1}}
+
+/* S6 字間が詰まる */
+.s6 .w{font-size:10cqw;color:#fff;animation:track .5s cubic-bezier(.2,.9,.2,1) both}
+@keyframes track{from{letter-spacing:1.2em;opacity:0;filter:blur(.6cqw)}to{letter-spacing:.42em;opacity:1;filter:none}}
+.s6 .sub{position:absolute;left:0;right:0;top:66%;text-align:center;font-family:var(--f-en);font-size:1.4cqw;letter-spacing:.8em;color:var(--gd)}
+
+/* S7 同じ言葉の散らばり */
+.s7{background:#0c0a16}
+.s7 .w{position:absolute;color:#fff;animation:pop2 .25s cubic-bezier(.2,1.6,.4,1) both;animation-delay:calc(var(--i)*.06s)}
+.s7 .w.h{color:transparent;-webkit-text-stroke:1.5px var(--cy)}
+.s7 .w.g{background:linear-gradient(90deg,var(--gd),var(--mg));-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes pop2{from{opacity:0;transform:scale(.2) rotate(-8deg)}to{opacity:1;transform:none}}
+
+/* S8 まとめ文 */
+.s8 .who{position:absolute;right:6%;bottom:-8%;height:116%;width:auto;max-width:none;filter:grayscale(1) contrast(1.2) drop-shadow(0 0 1.5cqw rgba(41,230,255,.6));animation:drift .8s ease-out both,dolly 1.4s linear both}
+@keyframes drift{from{transform:translateX(6cqw);opacity:0}to{transform:none;opacity:1}}
+@keyframes dolly{to{scale:1.05}}
+.s8 .big{position:absolute;right:-2%;top:-6%;font-family:var(--f-en);font-size:30cqw;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.18);line-height:.8}
+.s8 .stack{position:absolute;left:6%;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1.4cqw}
+.s8 .ln{display:block;overflow:hidden;font-size:6.4cqw;color:#fff;padding-bottom:.4cqw}
+.s8 .ln i{display:block;font-style:normal;animation:lineup .45s cubic-bezier(.15,.9,.25,1) both;animation-delay:calc(var(--i)*.22s)}
+.s8 .ln em{font-style:normal;background:linear-gradient(90deg,var(--cy),var(--mg));-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes lineup{from{transform:translateY(110%)}to{transform:none}}
+.s8 .rule{position:absolute;left:6%;top:24%;width:30%;height:2px;background:#fff;transform-origin:left;animation:bar .5s cubic-bezier(.7,0,.2,1) both}
+.s8 .cap{position:absolute;left:6%;top:18%;font-family:var(--f-en);font-size:1.2cqw;letter-spacing:.5em;color:var(--cy)}
+
+/* S9 分割ワイプ＋カウンター */
+.s9 .half{position:absolute;top:0;bottom:0;width:50%}
+.s9 .half.l{left:0;background:var(--mg);animation:wipeD .35s cubic-bezier(.7,0,.2,1) both}
+.s9 .half.r{right:0;background:url("img/cabinet_safe.jpg") center 30%/cover;filter:grayscale(1) brightness(.6);animation:wipeU .35s cubic-bezier(.7,0,.2,1) both}
+@keyframes wipeD{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
+@keyframes wipeU{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
+.s9 .num{font-family:var(--f-en);font-size:24cqw;color:#fff;letter-spacing:-.03em;font-variant-numeric:tabular-nums;text-shadow:1cqw 1cqw 0 rgba(0,0,0,.25)}
+.s9 .num small{font-family:var(--f-jp);font-weight:900;font-size:.28em;margin-left:.2em}
+.s9 .lab{position:absolute;left:0;right:0;top:20%;text-align:center;font-family:var(--f-en);font-size:2cqw;letter-spacing:1em;color:#fff;animation:track2 .7s ease-out both}
+@keyframes track2{from{letter-spacing:2em;opacity:0}to{letter-spacing:1em;opacity:1}}
+
+/* S10 マーカー帯 */
+.s10 .lights{position:absolute;inset:0;background:#06050d}
+.s10 .lights i{position:absolute;height:.35cqw;border-radius:9px;left:-30%;width:30%;background:linear-gradient(90deg,transparent,#ffb84a,#fff);animation:car .6s linear infinite}
+.s10 .lights i:nth-child(2n){background:linear-gradient(90deg,transparent,#ff3b3b,#fff);animation-duration:.8s}
+.s10 .lights i:nth-child(3n){background:linear-gradient(90deg,transparent,var(--cy),#fff);animation-duration:.5s}
+@keyframes car{to{left:130%}}
+.s10 .mk{position:absolute;left:7%;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:flex-start;gap:.8cqw}
+.s10 .mk span{position:relative;display:block;font-size:7cqw;color:#fff;padding:.2cqw 1.2cqw}
+.s10 .mk span{background:linear-gradient(90deg,#1d6bff,var(--cy)) no-repeat;background-size:0% 100%;animation:mark .3s cubic-bezier(.7,0,.2,1) forwards;animation-delay:calc(var(--i) * .3s)}
+@keyframes mark{to{background-size:100% 100%}}
+.s10 .mk span b{display:inline-block;clip-path:inset(0 100% 0 0);animation:reveal2 .3s cubic-bezier(.7,0,.2,1) forwards;animation-delay:calc(var(--i) * .3s + .12s)}
+@keyframes reveal2{to{clip-path:inset(0 0 0 0)}}
+.s10 .mk{isolation:isolate}
+
+/* 閃光 */
+.flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:9}
+.shock{position:absolute;left:58%;top:52%;width:20px;height:20px;margin:-10px;border-radius:50%;border:6px solid #fff;opacity:0;z-index:8;box-shadow:0 0 30px var(--cy),inset 0 0 30px var(--mg)}
+.cutflash{position:absolute;inset:0;background:#fff;z-index:9;opacity:0}
+.cutflash.on{animation:cf .12s linear}
+@keyframes cf{0%{opacity:.85}100%{opacity:0}}
+
+
+/* ===== 追加ショット（2本目の参考：照準の輪・縦書き明朝・引き出し線・砕ける文字） ===== */
+.mincho{font-family:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;font-weight:900}
+/* 照準の輪 */
+.sR{background:radial-gradient(ellipse at center,#2a0610 0%,#070205 70%)}
+.sR .blocks{position:absolute;inset:0;opacity:.55;background:
+  linear-gradient(#ff1f3d,#ff1f3d) 8% 18%/9% 3% no-repeat,linear-gradient(#ff1f3d,#ff1f3d) 78% 70%/14% 2% no-repeat,
+  linear-gradient(#7a0010,#7a0010) 70% 22%/6% 9% no-repeat,linear-gradient(#ff1f3d,#ff1f3d) 18% 76%/4% 7% no-repeat,
+  linear-gradient(#fff,#fff) 60% 84%/12% .4% no-repeat,linear-gradient(#fff,#fff) 20% 30%/16% .3% no-repeat;animation:blocks .4s steps(4) infinite}
+@keyframes blocks{25%{background-position:12% 40%,70% 20%,30% 80%,85% 30%,10% 60%,70% 50%}50%{background-position:40% 12%,20% 75%,82% 64%,48% 18%,66% 10%,30% 88%}75%{background-position:88% 52%,8% 44%,14% 30%,60% 70%,40% 40%,84% 14%}}
+.sR .ring{position:absolute;left:50%;top:50%;aspect-ratio:1;border-radius:50%;translate:-50% -50%}
+.sR .r1{width:30cqw;border:1px solid rgba(255,60,80,.9);box-shadow:0 0 2cqw rgba(255,31,61,.5),inset 0 0 2cqw rgba(255,31,61,.4);animation:ringin .5s cubic-bezier(.2,.9,.2,1) both}
+.sR .r2{width:40cqw;border:2px dashed rgba(255,255,255,.35);animation:ringin .6s cubic-bezier(.2,.9,.2,1) both,spin 6s linear infinite}
+.sR .r3{width:52cqw;background:repeating-conic-gradient(rgba(255,60,80,.8) 0 .6deg,transparent .6deg 6deg);
+  -webkit-mask:radial-gradient(circle,transparent 63%,#000 64%,#000 67%,transparent 68%);mask:radial-gradient(circle,transparent 63%,#000 64%,#000 67%,transparent 68%);animation:ringin .7s cubic-bezier(.2,.9,.2,1) both,spin 14s linear reverse infinite}
+@keyframes ringin{from{scale:1.8;opacity:0}to{scale:1;opacity:1}}
+.sR .hair{position:absolute;background:rgba(255,255,255,.6)}
+.sR .hair.h{left:0;right:0;top:50%;height:1px;-webkit-mask:linear-gradient(90deg,#000 0 30%,transparent 30% 70%,#000 70%);mask:linear-gradient(90deg,#000 0 30%,transparent 30% 70%,#000 70%);animation:bar .4s cubic-bezier(.7,0,.2,1) both}
+.sR .hair.v{top:0;bottom:0;left:50%;width:1px;-webkit-mask:linear-gradient(#000 0 22%,transparent 22% 78%,#000 78%);mask:linear-gradient(#000 0 22%,transparent 22% 78%,#000 78%)}
+.sR .w{font-size:5.6cqw;color:#fff;letter-spacing:.14em;text-shadow:0 0 1.2cqw rgba(255,80,100,.9),0 0 3cqw rgba(255,31,61,.6)}
+.sR .w .ch{animation:glowin .4s ease-out both;animation-delay:calc(.1s + var(--i)*.035s)}
+@keyframes glowin{from{opacity:0;filter:blur(1cqw);transform:scale(1.6)}to{opacity:1;filter:none;transform:none}}
+.sR .sub{position:absolute;left:0;right:0;top:61%;text-align:center;font-family:var(--f-en);font-size:1.1cqw;letter-spacing:.9em;color:rgba(255,120,130,.9)}
+.sR .tick{position:absolute;font-family:var(--f-en);font-size:.9cqw;letter-spacing:.2em;color:rgba(255,255,255,.6)}
+.sR .glitchline{position:absolute;left:0;right:0;height:.25cqw;background:#fff;opacity:0;animation:gline .5s steps(1) infinite}
+@keyframes gline{0%{opacity:0}30%{opacity:.9;top:22%}35%{opacity:0}60%{opacity:.7;top:71%}64%{opacity:0}}
+
+/* 縦書き明朝の三連 */
+.sT{background:radial-gradient(ellipse at 50% 60%,#2b0f4a 0%,#0a0614 70%)}
+.sT .cols{position:absolute;inset:7% 8%;display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:3cqw}
+.sT .col{position:relative;display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,207,58,.7);box-shadow:inset 0 0 0 .5cqw rgba(10,6,20,.9),inset 0 0 0 calc(.5cqw + 1px) rgba(255,207,58,.45),0 0 2cqw rgba(255,47,168,.25);
+  background:linear-gradient(180deg,rgba(255,47,168,.08),rgba(41,230,255,.06));transform-origin:center;animation:colin .45s cubic-bezier(.7,0,.2,1) both}
+.sT .col:nth-child(1){animation-delay:.08s}.sT .col:nth-child(3){animation-delay:.16s}
+@keyframes colin{from{transform:scaleY(0)}to{transform:none}}
+.sT .col::before,.sT .col::after{content:"";position:absolute;width:1.2cqw;height:1.2cqw;border:2px solid var(--gd)}
+.sT .col::before{left:-.6cqw;top:-.6cqw;border-right:0;border-bottom:0}
+.sT .col::after{right:-.6cqw;bottom:-.6cqw;border-left:0;border-top:0}
+.sT .vt{writing-mode:vertical-rl;color:#fff;line-height:1.1;letter-spacing:.3em}
+.sT .side .vt{font-size:3.4cqw;text-shadow:0 0 1cqw rgba(41,230,255,.7)}
+.sT .mid .vt{font-size:9.5cqw;letter-spacing:.12em;text-shadow:0 0 1.4cqw rgba(255,207,58,.8),0 0 4cqw rgba(255,47,168,.5)}
+.sT .vt .ch{display:inline-block;animation:vup .35s ease-out both;animation-delay:calc(.2s + var(--i)*.06s)}
+@keyframes vup{from{opacity:0;transform:translateY(-40%);filter:blur(.6cqw)}to{opacity:1;transform:none;filter:none}}
+.sT .tag{position:absolute;bottom:2.2%;left:0;right:0;text-align:center;font-family:var(--f-en);font-size:1cqw;letter-spacing:.7em;color:rgba(255,207,58,.85)}
+
+/* 筐体＋引き出し線 */
+.sM{background:#06050d}
+.sM .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(41,230,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(41,230,255,.08) 1px,transparent 1px);background-size:3cqw 3cqw}
+.sM .mach{position:absolute;left:6%;top:4%;height:92%;aspect-ratio:640/838}
+.sM .mach img{width:100%;height:100%;object-fit:cover;animation:machin 1.2s cubic-bezier(.15,.9,.25,1) both;box-shadow:0 0 0 1px rgba(41,230,255,.6),0 0 3cqw rgba(123,60,255,.6)}
+@keyframes machin{0%{transform:scale(1.35);filter:blur(1cqw) brightness(2)}40%{filter:none}100%{transform:none}}
+.sM .br{position:absolute;width:3cqw;height:3cqw;border:2px solid var(--cy)}
+.sM .br.a{left:-1.2cqw;top:-1.2cqw;border-right:0;border-bottom:0}.sM .br.b{right:-1.2cqw;top:-1.2cqw;border-left:0;border-bottom:0}
+.sM .br.c{left:-1.2cqw;bottom:-1.2cqw;border-right:0;border-top:0}.sM .br.d{right:-1.2cqw;bottom:-1.2cqw;border-left:0;border-top:0}
+.sM .co{position:absolute;right:-42%;display:flex;align-items:center;gap:.8cqw}
+.sM .co::before{content:"";width:1cqw;height:1cqw;border-radius:50%;background:var(--gd);box-shadow:0 0 0 .4cqw rgba(255,207,58,.3),0 0 1.4cqw var(--gd);flex:none;animation:popin .25s cubic-bezier(.2,1.6,.4,1) both;animation-delay:calc(.35s + var(--i)*.14s)}
+.sM .co .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--gd),#fff);transform-origin:left;animation:bar .3s cubic-bezier(.7,0,.2,1) both;animation-delay:calc(.42s + var(--i)*.14s)}
+.sM .co .lb{min-width:10cqw;color:#fff;line-height:1.15;clip-path:inset(0 100% 0 0);animation:reveal2 .3s cubic-bezier(.7,0,.2,1) forwards;animation-delay:calc(.55s + var(--i)*.14s)}
+.sM .co .lb small{display:block;font-family:var(--f-en);font-size:.8cqw;letter-spacing:.35em;color:var(--cy)}
+.sM .co .lb b{font-family:var(--f-jp);font-weight:900;font-size:1.6cqw}
+.sM .ttlR{position:absolute;right:4%;top:50%;translate:0 -50%;text-align:right}
+.sM .ttlR .en{display:block;font-size:6.2cqw;color:transparent;-webkit-text-stroke:1.5px #fff;line-height:.9;overflow:hidden}
+.sM .ttlR .en i{display:block;font-style:normal;animation:lineup .45s cubic-bezier(.15,.9,.25,1) both;animation-delay:calc(.15s + var(--i)*.1s)}
+.sM .ttlR .en.fill{color:#fff;-webkit-text-stroke:0}
+.sM .ttlR .mj{display:block;margin-top:1.4cqw;font-size:2cqw;color:var(--gd);letter-spacing:.3em;text-shadow:0 0 1cqw rgba(255,207,58,.6);opacity:0;animation:fin .4s ease-out .5s forwards}
+
+/* 砕ける文字 */
+.sS{background:#000}
+.sS .frag{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;
+  font-family:var(--f-en);font-size:12cqw;line-height:.88;color:#fff;text-shadow:0 0 2cqw rgba(41,230,255,.7);
+  animation:shard .5s cubic-bezier(.5,0,.9,.4) both}
+.sS .frag span:last-child{background:linear-gradient(90deg,var(--cy),var(--mg) 55%,var(--gd));-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes shard{0%,40%{transform:none;opacity:1}100%{transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1.15);opacity:0}}
+
+/* 完成画面の筐体カード */
+.machcard{position:absolute;right:2%;top:13%;width:19%;z-index:4;opacity:0}
+.machcard img{width:100%;display:block;box-shadow:0 0 0 1px rgba(41,230,255,.7),0 0 2.4cqw rgba(123,60,255,.7);transform:perspective(900px) rotateY(-14deg);transform-origin:right center}
+.machcard .lbl{display:flex;justify-content:space-between;margin-top:.6cqw;font-family:var(--f-en);font-size:.85cqw;letter-spacing:.25em;color:var(--cy)}
+.machcard .lbl b{color:#fff;font-weight:400}
+.kv.reveal .machcard{animation:slidein .7s cubic-bezier(.2,.9,.2,1) .55s forwards}
+.kv.rest .machcard{opacity:1}
+.person{right:26%;bottom:0;height:93%}
+.vcopy{right:21.8%;top:9%}
+.halo{right:19%}.rings{right:21%}.orbit{right:25%}
+.num25{opacity:.6}
+@media (max-width:600px){
+  .machcard{width:30%;right:3%;top:13%}
+  .vcopy{display:none}
+  .person{right:12%;height:84%}
+  .sT .cols{inset:6% 4%;gap:2cqw}.sT .mid .vt{font-size:15cqw}.sT .side .vt{font-size:6cqw}
+  .sM .mach{left:3%;height:70%;top:15%}.sM .ttlR{top:12%;translate:none}.sM .ttlR .en{font-size:9cqw}.sM .co .lb b{font-size:3cqw}.sM .co .lb small{font-size:1.6cqw}
+  .sR .w{font-size:9cqw}.sR .r1{width:52cqw}.sR .r2{width:68cqw}.sR .r3{width:86cqw}
+  .sS .frag{font-size:20cqw}
+}
+
+
+/* ===== #01 赤い衝撃 → 黒い題字 ===== */
+.s1{background:#000}
+.s1 .b1,.s1 .b2{position:absolute;inset:0;overflow:hidden}
+.s1 .b1{background:#e8001c;animation:b1life 1.15s steps(1) both}
+@keyframes b1life{0%{visibility:visible}46%,100%{visibility:hidden}}
+.s1 .b2{background:#000;animation:b2life 1.15s steps(1) both}
+@keyframes b2life{0%{visibility:hidden}46%,100%{visibility:visible}}
+.s1 .bigr{position:absolute;left:50%;top:50%;font-size:36cqw;line-height:.86;color:#0a0a0a;letter-spacing:-.06em;white-space:nowrap;translate:-50% -52%;animation:redslam .62s cubic-bezier(.15,1,.3,1) both}
+@keyframes redslam{0%{transform:scale(1.9);filter:blur(1cqw)}18%{transform:scale(.97);filter:none}26%{transform:scale(1.01)}100%{transform:scale(1.05)}}
+.s1 .b1{animation:b1life 1.15s steps(1) both,shk .25s linear .1s}
+@keyframes shk{20%{translate:-1.4cqw .8cqw}40%{translate:1.2cqw -1cqw}60%{translate:-.8cqw -.5cqw}80%{translate:.5cqw .6cqw}}
+.s1 .bar{position:absolute;background:#0a0a0a}
+.s1 .b-a{left:0;top:6%;height:3.4cqw;width:46%;transform-origin:left;animation:bar .18s cubic-bezier(.7,0,.2,1) .12s both}
+.s1 .b-b{right:3%;top:0;width:3.4cqw;height:62%;transform-origin:top;animation:barv .2s cubic-bezier(.7,0,.2,1) .16s both}
+.s1 .b-c{left:8%;bottom:7%;height:1.2cqw;width:30%;transform-origin:left;animation:bar .18s cubic-bezier(.7,0,.2,1) .2s both}
+@keyframes barv{from{transform:scaleY(0)}to{transform:none}}
+.s1 .meta{position:absolute;right:3.4%;bottom:6%;writing-mode:vertical-rl;font-family:var(--f-en);font-size:1.15cqw;letter-spacing:.3em;color:#fff}
+.s1 .cnt{position:absolute;left:3%;top:12%;font-size:3cqw;color:#fff;font-family:var(--f-en)}
+.s1 .b2 .ep{position:absolute;left:8%;top:14%;font-size:4.2cqw;color:#fff;letter-spacing:.02em;transform:scaleY(1.25);transform-origin:left top}
+.s1 .b2 .t2{position:absolute;right:7%;bottom:12%;text-align:right;color:#fff;line-height:1}
+.s1 .b2 .t2 span{display:block;font-size:7.2cqw;transform:scaleY(1.22);transform-origin:right bottom;letter-spacing:-.02em}
+.s1 .b2 .t2 .big{font-size:17cqw;margin-top:1.6cqw;letter-spacing:-.04em}
+.s1 .b2 .badge25{position:absolute;right:7%;top:12%;width:7.5cqw;aspect-ratio:1;border-radius:50%;border:.5cqw solid #18b8e6;display:grid;place-items:center}
+.s1 .b2 .badge25 span{font-family:var(--f-en);font-size:3.4cqw;color:#18b8e6;letter-spacing:-.02em}
+.s1 .b2 .by{position:absolute;left:8%;bottom:12%;font-family:var(--f-en);font-size:1.1cqw;letter-spacing:.6em;color:rgba(255,255,255,.6)}
+.s1 .b2 .t2,.s1 .b2 .ep{animation:cardflick .5s steps(1) .53s both}
+@keyframes cardflick{0%{opacity:0}8%{opacity:1}14%{opacity:.25}20%,100%{opacity:1}}
+
+/* ===== #09 バース字幕 ===== */
+.sV{background:#05020a}
+.sV .stagebg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 30% 70% at 18% 0%,rgba(255,40,80,.55),transparent 70%),
+  radial-gradient(ellipse 26% 60% at 70% 0%,rgba(140,60,255,.5),transparent 70%),
+  radial-gradient(ellipse 40% 30% at 50% 100%,rgba(255,60,120,.35),transparent 70%),#07030c;animation:lights .4s steps(2) infinite}
+@keyframes lights{50%{filter:brightness(1.35) hue-rotate(-12deg)}}
+.sV .mc{position:absolute;left:6%;bottom:-38%;height:150%;width:auto;max-width:none;filter:grayscale(1) contrast(1.35) brightness(.8) drop-shadow(0 0 2cqw rgba(255,40,80,.6));animation:mcpush 1.35s linear both}
+@keyframes mcpush{from{transform:scale(1)}to{transform:scale(1.08) translateX(-1cqw)}}
+.sV .leak{position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,90,60,.35) 45%,transparent 60%);mix-blend-mode:screen;animation:leak 1.35s ease-in-out both}
+@keyframes leak{from{transform:translateX(-40%)}to{transform:translateX(40%)}}
+.sV .vtag{position:absolute;left:3%;top:6%;font-family:var(--f-en);font-size:1.1cqw;letter-spacing:.4em;color:rgba(255,255,255,.7);border-left:3px solid #ff2f4a;padding-left:.8cqw}
+.sV .verse p{position:absolute;right:5%;bottom:13%;margin:0;font-family:var(--f-jp);font-weight:900;font-size:6.4cqw;color:#fff;line-height:1;white-space:nowrap;opacity:0;
+  text-shadow:.25cqw .25cqw 0 #000,-.1cqw -.1cqw 0 #000,.1cqw -.1cqw 0 #000,-.1cqw .1cqw 0 #000;transform:skewX(-11deg)}
+.sV .verse p:not(.punch){animation:vline .36s cubic-bezier(.2,.9,.2,1) forwards;animation-delay:calc(var(--s) * .36s)}
+@keyframes vline{0%{opacity:1;transform:skewX(-11deg) translateX(5cqw)}22%{transform:skewX(-11deg)}97%{opacity:1}100%{opacity:0;transform:skewX(-11deg)}}
+.sV .verse .punch{font-size:9.6cqw;bottom:11%;animation:punch .32s cubic-bezier(.2,1.5,.4,1) .74s forwards}
+.sV .verse .punch em{font-style:normal;color:#ff2f4a;-webkit-text-stroke:.2cqw #fff;paint-order:stroke fill}
+.sV .verse .punch .ul{position:absolute;left:0;right:0;bottom:-1.6cqw;height:.9cqw;background:#ff2f4a;transform-origin:left;transform:scaleX(0);animation:bar .25s cubic-bezier(.7,0,.2,1) .9s forwards}
+@keyframes punch{0%{opacity:0;transform:skewX(-11deg) scale(1.9)}100%{opacity:1;transform:skewX(-11deg)}}
+.sV{animation:shk .28s linear .78s}
+@media (max-width:600px){
+  .s1 .bigr{font-size:56cqw}.s1 .b2 .t2 .big{font-size:30cqw}.s1 .b2 .t2 span{font-size:11cqw}.s1 .b2 .ep{font-size:7cqw}.s1 .b2 .badge25{width:13cqw}.s1 .b2 .badge25 span{font-size:6cqw}
+  .sV .verse p{font-size:10cqw}.sV .verse .punch{font-size:14cqw}.sV .mc{left:-20%}
+}
+
+
+/* ===== #08B 写真の連打 → 寄せ書き ===== */
+.sP{background:#0b0b0c}
+.sP .strobe{position:absolute;inset:0;animation:strobelife 1.3s steps(1) both}
+@keyframes strobelife{0%{visibility:visible}42%,100%{visibility:hidden}}
+.sP .strobe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:grayscale(1) contrast(1.35)}
+.sP .strobe::after{content:"";position:absolute;inset:0;background:#e10a23;mix-blend-mode:multiply;opacity:0}
+.sP .strobe.hit::after{opacity:.85}
+.sP .strobe.hit img{filter:contrast(1.2)}
+.sP .ctr{position:absolute;right:3%;bottom:6%;z-index:3;font-family:var(--f-en);font-size:2.2cqw;color:#fff;letter-spacing:.1em;animation:strobelife 1.3s steps(1) both}
+.sP .ghostP{position:absolute;left:0;top:34%;font-size:15cqw;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.18);white-space:nowrap;animation:ghostL 1.5s linear both}
+.sP .pc{position:absolute;width:15%;aspect-ratio:1;background:#fff;padding:.5cqw .5cqw 1.6cqw;box-shadow:.6cqw .8cqw 0 rgba(0,0,0,.45);opacity:0;
+  left:var(--x);top:var(--y);rotate:var(--r);animation:pcin .45s cubic-bezier(.2,1.3,.4,1) forwards;animation-delay:calc(.64s + var(--i) * .045s)}
+.sP .pc img{width:100%;height:100%;object-fit:cover;display:block}
+.sP .pc.me{outline:.35cqw solid #e10a23}
+@keyframes pcin{from{opacity:0;transform:translate(var(--fx),var(--fy)) scale(1.7)}to{opacity:1;transform:none}}
+.sP .headP{position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:4;display:flex;flex-direction:column;align-items:center;gap:.6cqw;opacity:0;animation:headin .35s cubic-bezier(.2,1.5,.4,1) 1.02s forwards}
+.sP .headP span{display:block;background:#fff;color:#0b0b0c;font-size:5.6cqw;padding:.3cqw 1.6cqw;line-height:1.1;box-shadow:.5cqw .5cqw 0 #e10a23}
+.sP .headP span:last-child{background:#e10a23;color:#fff;box-shadow:.5cqw .5cqw 0 #0b0b0c}
+@keyframes headin{from{opacity:0;transform:scale(1.8) rotate(-4deg)}to{opacity:1;transform:rotate(-2deg)}}
+@media (max-width:600px){.sP .pc{width:24%}.sP .headP span{font-size:9cqw}}
+
+
+/* ===== #06 リール停止・#09 漢字の叩きつけ・#10 判子の宣言 ===== */
+.sR2{background:radial-gradient(ellipse at 50% 45%,#3a0a12 0%,#0c0306 65%,#000 100%)}
+.sR2 .spot{position:absolute;inset:0;background:radial-gradient(ellipse 40% 60% at 50% 45%,rgba(255,200,90,.18),transparent 70%)}
+.sR2 .tagr{position:absolute;left:3%;top:7%;font-family:var(--f-en);font-size:1.1cqw;letter-spacing:.4em;color:rgba(255,120,120,.85)}
+.sR2 .reels{position:absolute;left:50%;top:44%;translate:-50% -50%;display:flex;gap:2.4cqw}
+.sR2 .rw{width:17cqw;height:21cqw;overflow:hidden;background:linear-gradient(180deg,#120a00,#2a1800 50%,#120a00);border:.6cqw solid #ffcf3a;box-shadow:0 0 0 .3cqw #6b3a00,0 0 2.5cqw rgba(255,190,60,.55),inset 0 1.5cqw 2cqw rgba(0,0,0,.7),inset 0 -1.5cqw 2cqw rgba(0,0,0,.7);border-radius:1cqw}
+.sR2 .strip{display:flex;flex-direction:column}
+.sR2 .strip b{height:21cqw;display:grid;place-items:center;font-family:"Anton",sans-serif;font-style:italic;font-weight:400;font-size:17cqw;line-height:1;
+  background:linear-gradient(180deg,#fffbe0 0%,#ffd84a 38%,#c27a00 55%,#ffe27a 75%,#a85d00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 .3cqw 0 #3a1c00)}
+.sR2 .l .strip{animation:reelL .62s cubic-bezier(.25,.9,.3,1.08) both}
+.sR2 .r .strip{animation:reelR 1.02s cubic-bezier(.3,.9,.3,1.06) both}
+@keyframes reelL{0%{transform:translateY(0);filter:blur(.6cqw)}80%{filter:blur(.1cqw)}100%{transform:translateY(-94.7368%);filter:none}}
+@keyframes reelR{0%{transform:translateY(0);filter:blur(.6cqw)}55%{filter:blur(.5cqw)}100%{transform:translateY(-94.7368%);filter:none}}
+.sR2 .reach{position:absolute;left:0;right:0;top:9%;text-align:center;font-family:"Archivo Black",sans-serif;font-size:4cqw;letter-spacing:.3em;color:#fff;text-shadow:0 0 1.5cqw #ff2f4a;opacity:0;animation:reachf .45s steps(2) .55s 1 both}
+@keyframes reachf{0%{opacity:1}50%{opacity:.2}100%{opacity:0}}
+.sR2 .soroi{position:absolute;left:0;right:0;bottom:9%;text-align:center;font-family:"Zen Old Mincho",serif;font-weight:900;font-size:5cqw;color:#fff;letter-spacing:.12em;opacity:0;animation:pvslam .4s cubic-bezier(.2,1.5,.4,1) 1.05s forwards}
+.sR2 .soroi span{color:#ffcf3a}
+.sR2 .flash2{position:absolute;inset:0;background:#fff;opacity:0;animation:cf .25s linear 1.02s}
+.sR2 .rw.r{animation:rwglow .5s ease 1.02s}
+.sR2 .rw.l{animation:rwglow .5s ease 1.02s}
+@keyframes rwglow{50%{box-shadow:0 0 0 .3cqw #fff,0 0 5cqw #ffcf3a}}
+.sV2{background:#2c2c2e}
+.sV2 .conc{position:absolute;inset:0;background:
+  radial-gradient(ellipse 60% 50% at 30% 30%,rgba(255,255,255,.08),transparent 70%),
+  radial-gradient(circle,rgba(0,0,0,.35) 0 1px,transparent 1.5px) 0 0/7px 7px,
+  radial-gradient(circle,rgba(255,255,255,.06) 0 1px,transparent 1.5px) 3px 4px/11px 11px,
+  linear-gradient(180deg,#3a3a3d,#1c1c1e)}
+.sV2 .kb{position:absolute;inset:0;display:grid;place-items:center;opacity:0;animation:kbw .19s steps(1) forwards;animation-delay:calc(var(--i) * .18s)}
+@keyframes kbw{0%,99%{opacity:1}100%{opacity:0}}
+.sV2 .kb i,.sV2 .kb b{grid-area:1/1;font-family:"Noto Sans JP",sans-serif;font-weight:900;font-style:normal;line-height:1}
+.sV2 .kb i{font-size:46cqw;color:transparent;-webkit-text-stroke:.25cqw rgba(225,10,35,.55)}
+.sV2 .kb b{font-size:20cqw;color:#fff;animation:kbslam .19s cubic-bezier(.2,1.6,.4,1) both;animation-delay:inherit}
+.sV2 .kb.red b{color:#e10a23}
+@keyframes kbslam{from{transform:scale(1.6)}to{transform:none}}
+.sV2 .line9{position:absolute;left:0;right:0;top:50%;translate:0 -50%;text-align:center;font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:11cqw;color:#fff;letter-spacing:.02em;opacity:0;animation:pvslam .4s cubic-bezier(.2,1.5,.4,1) .74s forwards}
+.sV2 .line9 em{font-style:normal;color:#e10a23}
+.sV2 .line9 u{display:block;margin:1.2cqw auto 0;width:0;height:.8cqw;background:#e10a23;animation:ulw .35s cubic-bezier(.7,0,.2,1) .95s forwards}
+@keyframes ulw{to{width:62%}}
+.sV2 .hud9{position:absolute;left:3%;bottom:7%;font-family:var(--f-en);font-size:1.1cqw;letter-spacing:.4em;color:#e10a23}
+.s82{background:#f1ede6}
+.s82 .paper{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 1px,transparent 1px 4px)}
+.s82 .pp{position:absolute;left:4%;bottom:-30%;height:150%;width:auto;max-width:none;filter:grayscale(1) contrast(1.15);animation:ppin 1.6s cubic-bezier(.15,.9,.25,1) both}
+@keyframes ppin{from{opacity:0;transform:translateX(-6%)}to{opacity:1;transform:none}}
+.s82 .cols10{position:absolute;right:9%;top:9%;height:80%;writing-mode:vertical-rl;display:flex;gap:2.4cqw;font-size:5.4cqw;color:#141414;line-height:1.1;letter-spacing:.14em}
+.s82 .cols10 span{display:block;clip-path:inset(0 0 100% 0);animation:colrev .45s cubic-bezier(.7,0,.2,1) forwards;animation-delay:calc(.15s + var(--i) * .22s)}
+@keyframes colrev{to{clip-path:inset(0)}}
+.s82 .cols10 em{font-style:normal;color:#d0021b}
+.s82 .hanko{position:absolute;right:6%;bottom:9%;width:10cqw;aspect-ratio:1;border:.5cqw solid #d0021b;border-radius:.6cqw;display:grid;place-items:center;opacity:0;animation:hanko .3s cubic-bezier(.2,1.5,.4,1) 1.0s forwards}
+.s82 .hanko span{font-family:"Zen Old Mincho",serif;font-weight:900;font-size:7cqw;color:#d0021b;line-height:1}
+@keyframes hanko{0%{opacity:0;transform:scale(2.4) rotate(-14deg)}100%{opacity:.92;transform:rotate(-8deg)}}
+.s82 .rule10{position:absolute;right:4%;top:6%;bottom:6%;width:1px;background:#141414;opacity:.5}
+.s82 .cap10{position:absolute;left:3%;top:6%;font-family:var(--f-en);font-size:1.1cqw;letter-spacing:.4em;color:#141414;opacity:.6}
+.s82{animation:shk .25s linear 1.05s}
+@media (max-width:600px){
+  .sR2 .reels{top:46%}.sR2 .rw{width:30cqw;height:37cqw}.sR2 .strip b{height:37cqw;font-size:30cqw}
+  .sR2 .reach{font-size:7cqw}.sR2 .soroi{font-size:9cqw}.sR2 .tagr{font-size:2.4cqw}
+  .sV2 .kb i{font-size:80cqw}.sV2 .kb b{font-size:36cqw}.sV2 .line9{font-size:13cqw}.sV2 .hud9{font-size:2.4cqw}
+  .s82 .pp{left:-22%;opacity:.55}.s82 .cols10{font-size:9cqw;right:8%;top:10%}.s82 .hanko{width:18cqw}.s82 .hanko span{font-size:12cqw}.s82 .cap10{font-size:2.4cqw}
+}
+
+
+/* #09・#10 の修正 */
+.sV2 .kb i,.sV2 .kb b{font-family:"Dela Gothic One","Noto Sans JP",sans-serif;font-weight:400}
+.sV2 .kb i{-webkit-text-stroke:.18cqw rgba(225,10,35,.6)}
+.s82 .cols10{writing-mode:horizontal-tb;display:flex;flex-direction:row-reverse;align-items:flex-start;gap:2.6cqw;height:auto}
+.s82 .cols10 span{writing-mode:vertical-rl;white-space:nowrap}
+.s82 .hanko{right:auto;left:46%;bottom:auto;top:12%}
+@media (max-width:600px){
+  .s82 .pp{left:-30%;opacity:.35}
+  .s82 .cols10{font-size:8.4cqw;right:6%;top:10%;gap:3.4cqw}
+  .s82 .hanko{left:8%;top:auto;bottom:14%}
+}
+
+
+.sV2 .kb i{font-family:"Noto Sans JP",sans-serif;font-weight:700;-webkit-text-stroke:.12cqw rgba(255,255,255,.22);opacity:.9;transform:translateX(-3%)}
+.sV2 .kb b{font-family:"Noto Sans JP",sans-serif;font-weight:900;text-shadow:.6cqw .6cqw 0 rgba(0,0,0,.45)}
+
+/* ===== 完成画面のタイムライン（.reveal の時刻0から） ===== */
+.kv.reveal .shots{display:none}
+.kv.reveal .flash{animation:flash .7s ease-out}
+@keyframes flash{0%{opacity:1}100%{opacity:0}}
+.kv.reveal .shock{animation:shock .9s cubic-bezier(.1,.8,.3,1)}
+@keyframes shock{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(90);border-width:1px}}
+.kv.reveal .stage{animation:shake .5s linear .4s}
+@keyframes shake{10%{transform:translate(-10px,6px)}20%{transform:translate(9px,-8px)}30%{transform:translate(-7px,-4px)}40%{transform:translate(6px,7px)}55%{transform:translate(-4px,3px)}70%{transform:translate(3px,-2px)}100%{transform:none}}
+.kv.reveal .hex{animation:hexdrift 14s linear infinite,hexin 1.2s ease-out forwards}
+@keyframes hexin{0%{opacity:0}30%{opacity:1}100%{opacity:.55}}
+.kv.reveal .full{opacity:1}
+.kv.reveal .person{animation:rise .9s cubic-bezier(.15,.9,.25,1) both}
+@keyframes rise{0%{transform:translateY(30%) scale(.92);opacity:0;filter:brightness(4) blur(6px)}60%{opacity:1}100%{transform:none;opacity:1}}
+.kv.reveal .num25{animation:num25 .9s cubic-bezier(.15,.9,.25,1) .15s both}
+@keyframes num25{0%{transform:translateX(30%);opacity:0}100%{transform:none;opacity:1}}
+.kv.reveal .streaks{animation:fin .4s ease-out .25s forwards}
+.kv.reveal .endtype span i{animation:lineup .55s cubic-bezier(.15,.9,.25,1) both;animation-delay:calc(.3s + var(--i)*.09s)}
+.kv.reveal .endtype small{animation:fin .5s ease-out .75s forwards}
+.kv.reveal .logowrap{animation:slam .6s cubic-bezier(.2,1.5,.4,1) .4s forwards}
+@keyframes slam{0%{opacity:0;transform:scale(2.6) rotate(-4deg);filter:blur(10px)}100%{opacity:1;transform:none;filter:none}}
+.kv.reveal .logowrap .shine{animation:shine 3.6s ease-in-out 1.2s infinite}
+@keyframes shine{0%{background-position:150% 0}35%,100%{background-position:-60% 0}}
+.kv.reveal .vcopy .ch{animation:vch .35s ease-out calc(.85s + var(--i)*.07s) forwards}
+@keyframes vch{0%{opacity:0;transform:translateX(30px);filter:blur(4px)}100%{opacity:1;transform:none;filter:none}}
+.kv.reveal .kvbadges span{animation:pop .4s cubic-bezier(.2,1.6,.4,1) calc(1.05s + var(--i)*.1s) forwards}
+@keyframes pop{0%{opacity:0;transform:scale(.3)}100%{opacity:1;transform:none}}
+.kv.reveal .bnr{animation:slidein .5s cubic-bezier(.2,.9,.2,1) calc(1.35s + var(--i)*.12s) forwards}
+@keyframes slidein{0%{opacity:0;transform:translateX(60px)}100%{opacity:1;transform:none}}
+.kv.reveal .copyr,.kv.reveal .ticker2{animation:fin .6s ease-out 1.6s forwards}
+
+/* 動きを止める設定の時は完成形 */
+.kv.rest .shots{display:none}
+.kv.rest .full,.kv.rest .logowrap,.kv.rest .copyr,.kv.rest .ticker2,.kv.rest .streaks,.kv.rest .vcopy .ch,.kv.rest .bnr,.kv.rest .kvbadges span,.kv.rest .endtype small{opacity:1}
+.kv.rest .endtype span i{transform:none}
+.kv.rest .hex{opacity:.55}
+
+@media (max-width:600px){
+  .kv{aspect-ratio:4/5}
+  .person{right:-6%;height:90%;bottom:0}
+  .halo,.rings{right:-12%;width:92%;top:4%}
+  .orbit{right:-2%;width:70%}
+  .num25{font-size:40cqw}
+  .endtype{font-size:11cqw;top:9%}
+  .endtype small{font-size:2.4cqw}
+  .logowrap{width:74%;bottom:31%}
+  .kvbadges{max-width:94%;bottom:23%}
+  .kvside{left:3%;right:3%;width:auto;flex-direction:row;bottom:3%}
+  .bnr{flex:1}
+  .copyr{bottom:19.5%}
+  .vcopy{right:4%;font-size:4.6cqw;top:30%}
+  .ticker2 div{font-size:2.4cqw}
+  .s1 .w{font-size:20cqw}.s2 .w{font-size:50cqw}.s4 .w{font-size:30cqw}.s5 .w{font-size:26cqw}.s5 .ghost{font-size:44cqw}
+  .s6 .w{font-size:17cqw}.s8 .ln{font-size:11cqw}.s8 .who{right:-20%;opacity:.5}.s9 .num{font-size:36cqw}.s10 .mk span{font-size:11cqw}
+  .s3 .row{font-size:20cqw}
+  .s9 .half{width:100%;height:50%}.s9 .half.r{top:auto;bottom:0}.s9 .half.l{bottom:auto}
+}
+
+
+/* ===== 完成画面 v2：赤・黒・白のキービジュアル（#15〜#18） ===== */
+.kv .kbg{background:radial-gradient(ellipse 60% 80% at 25% 40%,#1c1c1f 0%,#0a0a0b 70%)}
+.kv .hex,.kv .streaks,.kv .halo,.kv .rings,.kv .orbit,.kv .floor,.kv .vcopy{display:none}
+.kv .grain{position:absolute;inset:0;opacity:.18;background:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 3px);mix-blend-mode:screen;pointer-events:none}
+.kv .redpanel{position:absolute;top:0;bottom:0;right:0;width:50%;background:#e8001c;clip-path:polygon(16% 0,100% 0,100% 100%,0 100%);overflow:hidden}
+.kv .redpanel .scan2{position:absolute;inset:-20% 0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0 2px,transparent 2px 6px);animation:scanmove 6s linear infinite}
+@keyframes scanmove{to{transform:translateY(20%)}}
+.kv .redpanel .rbar{position:absolute;left:22%;top:7%;width:30%;height:1.2cqw;background:#0a0a0a}
+.kv .num25{right:-3%;bottom:-11%;top:auto;font-size:46cqw;line-height:.8;color:#0a0a0a;-webkit-text-stroke:0;letter-spacing:-.06em;opacity:1}
+.kv .person{right:17%;bottom:0;height:96%;filter:drop-shadow(1.1cqw .3cqw 0 #0a0a0a)}
+.kv .endtype{left:4%;top:13%;font-family:var(--f-jp);font-weight:900;font-size:7.8cqw;line-height:1.06;letter-spacing:-.01em}
+.kv .endtype .kick{font-family:var(--f-en);font-weight:400;font-size:1cqw;letter-spacing:.42em;color:rgba(255,255,255,.6);margin-bottom:1.6cqw;opacity:0}
+.kv .endtype span:nth-child(n) i{color:#fff;-webkit-text-stroke:0;background:none}
+.kv .endtype em{font-style:normal;color:#e8001c}
+.kv .endtype small{font-family:var(--f-en);font-weight:400;font-size:1.1cqw;letter-spacing:.38em;color:#fff;margin-top:1.8cqw;border-top:2px solid #e8001c;padding-top:1cqw;width:max-content}
+.kv .logowrap{left:4%;bottom:16%;width:29%}
+.kv .kvlogo{filter:drop-shadow(.5cqw .5cqw 0 rgba(0,0,0,.7))}
+.kv .kvbadges{left:4%;bottom:9.5%;gap:6px;max-width:44%}
+.kv .kvbadges span,.kv .kvbadges span.f,.kv .kvbadges span.g{background:transparent;border:1px solid rgba(255,255,255,.75);color:#fff;box-shadow:none;font-size:clamp(9px,.9cqw,12px);letter-spacing:.06em}
+.kv .kvbadges span.f{background:#e8001c;border-color:#e8001c}
+.kv .kvside{left:0;right:0;bottom:0;width:auto;flex-direction:row;gap:0;background:#0a0a0a;border-top:1px solid rgba(255,255,255,.25)}
+.kv .bnr,.kv .bnr.red{flex:1;display:flex;align-items:center;gap:1cqw;background:transparent;border:0;border-right:1px solid rgba(255,255,255,.2);backdrop-filter:none;padding:.9cqw 2cqw;font-size:clamp(10px,1cqw,13px)}
+.kv .bnr b,.kv .bnr.red b{display:inline;font-size:1.3em;color:#fff}
+.kv .bnr.red b{color:#ff3348}
+.kv .bnr::after{content:"→";margin-left:auto;color:#ff3348}
+.kv .copyr{left:auto;right:2%;bottom:9.5%;color:rgba(255,255,255,.75)}
+.kv .machcard{right:3%;top:10%;width:12.5%}
+.kv .machcard img{transform:none;box-shadow:0 0 0 2px #fff,.7cqw .7cqw 0 #0a0a0a}
+.kv .machcard .lbl{color:#fff}.kv .machcard .lbl b{color:#0a0a0a}
+.kv .vmeta{position:absolute;right:1.2%;bottom:15%;z-index:5;writing-mode:vertical-rl;font-family:var(--f-en);font-size:.95cqw;letter-spacing:.3em;color:#fff;opacity:0}
+.kv .ticker2{background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.2)}
+.kv .ticker2 b{color:#ff3348}
+.kv .shock{box-shadow:0 0 30px #fff,inset 0 0 30px #e8001c}
+/* 完成画面の動き */
+.kv.reveal .redpanel{animation:panelin .5s cubic-bezier(.7,0,.2,1) both}
+@keyframes panelin{from{clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%)}to{clip-path:polygon(16% 0,100% 0,100% 100%,0 100%)}}
+.kv.reveal .num25{animation:num25 .7s cubic-bezier(.15,.9,.25,1) .2s both}
+.kv.reveal .person{animation:rise2 .6s cubic-bezier(.15,.9,.25,1) .12s both,breath2 5s ease-in-out 1.2s infinite alternate}
+@keyframes rise2{from{transform:translateY(14%);opacity:0;filter:drop-shadow(1.1cqw .3cqw 0 #0a0a0a) blur(4px)}to{transform:none;opacity:1}}
+@keyframes breath2{to{scale:1.025}}
+.kv.reveal .endtype .kick{animation:fin .4s ease-out .4s forwards}
+.kv.reveal .vmeta{animation:fin .5s ease-out 1.6s forwards}
+.kv.rest .redpanel{clip-path:polygon(16% 0,100% 0,100% 100%,0 100%)}
+.kv.rest .endtype .kick,.kv.rest .vmeta{opacity:1}
+@media (max-width:600px){
+  .kv .redpanel{width:80%}
+  .kv .num25{font-size:70cqw}
+  .kv .person{right:-4%;height:80%;bottom:8%}
+  .kv .endtype{font-size:12cqw;top:9%}.kv .endtype .kick{font-size:2cqw}.kv .endtype small{font-size:2cqw}
+  .kv .logowrap{width:56%;bottom:24%}
+  .kv .kvbadges{bottom:17%;max-width:92%}
+  .kv .machcard{width:24%;top:9%}
+  .kv .copyr{display:none}.kv .vmeta{display:none}
+  .kv .bnr,.kv .bnr.red{padding:2cqw 3cqw;font-size:11px}
+}
+
+
+
+/* ---------- 最後のコピー差し替え（今夜、二十五が揃う。） ---------- */
+.kv .endtype{font-size:5.6cqw;top:16%}
+.kv .endtype span:nth-child(3) i{font-size:1.35em}
+.kv .endtype em{color:#e8001c}
+.kv .bigk{position:absolute;left:-2%;top:-6%;z-index:4;font-family:"Noto Sans JP",sans-serif;font-weight:900;font-size:44cqw;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(232,0,28,.45);opacity:0;pointer-events:none}
+.kv .hudr{position:absolute;left:4%;top:9.5%;z-index:5;font-family:"Archivo Black",sans-serif;font-size:.95cqw;letter-spacing:.3em;color:#e8001c;line-height:1.7;opacity:0}
+.kv .hudr span{color:rgba(255,255,255,.55)}
+.kv .endtype .kick{display:none}
+.kv.reveal .bigk{animation:bigkin .8s cubic-bezier(.15,.9,.25,1) .25s forwards}
+@keyframes bigkin{from{opacity:0;transform:scale(1.3)}to{opacity:1;transform:none}}
+.kv.reveal .hudr{animation:cardflick .6s steps(1) .5s forwards}
+.kv.rest .bigk,.kv.rest .hudr{opacity:1}
+@media (max-width:600px){.kv .endtype{font-size:8.6cqw;top:12%}.kv .bigk{font-size:70cqw}.kv .hudr{font-size:2cqw;top:6.5%}}
+
+/* ---------- 下層ページのメイン画像（斜め帯＋大数字） ---------- */
+.mainv{position:relative;overflow:hidden;color:#fff;padding-block:28px 0;
+  background:
+   radial-gradient(circle at 12% 30%,rgba(0,0,0,.55) 0 18px,transparent 19px),
+   radial-gradient(circle at 38% 78%,rgba(0,0,0,.5) 0 12px,transparent 13px),
+   radial-gradient(circle at 62% 18%,rgba(0,0,0,.45) 0 9px,transparent 10px),
+   repeating-linear-gradient(-12deg,#2a2530 0 2px,#3a333f 2px 7px),
+   linear-gradient(180deg,#463d4c,#1d1822)}
+.mainv .inner{position:relative;max-width:1300px;margin:0 auto;padding-inline:16px;display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:end;min-height:420px}
+.mainv .bands{display:flex;flex-direction:column;gap:12px;padding-bottom:28px;min-width:0}
+.slab{display:flex;align-items:center;gap:14px;background:linear-gradient(90deg,rgba(255,255,255,.96),rgba(255,255,255,.88));color:var(--ink);transform:skewY(-6deg);padding:8px 18px;margin-left:-16px;box-shadow:6px 6px 0 rgba(0,0,0,.35);max-width:100%}
+.slab > *{transform:skewY(6deg)}
+.slab .k{font-family:var(--f-display);font-size:clamp(16px,2vw,24px);line-height:1.05;min-width:4.2em}
+.slab .v{font-family:var(--f-num);font-style:italic;font-size:clamp(36px,6vw,78px);line-height:1;letter-spacing:.01em;
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold) 50%,var(--gold-d) 51%,#ffd75a);-webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-stroke:1.5px #6a1a00;paint-order:stroke fill;filter:drop-shadow(3px 3px 0 #4a0010)}
+.slab .v small{font-size:.5em}
+.slab .v + .k{margin-left:10px}
+.mainv .figure{position:relative;align-self:end;min-width:0}
+.mainv .figure img{width:100%;max-width:440px;margin-left:auto;filter:drop-shadow(-8px 0 0 rgba(230,0,30,.35))}
+.callout{position:absolute;left:-12%;bottom:18%;transform:rotate(-8deg);text-align:center;max-width:110%}
+.callout .a{display:inline-block;background:var(--red);color:#fff;font-family:var(--f-display);font-size:clamp(16px,2vw,24px);padding:2px 14px;box-shadow:3px 3px 0 #000}
+.callout .b{display:block;font-family:var(--f-display);font-size:clamp(22px,3.2vw,42px);line-height:1.2;color:#fff;-webkit-text-stroke:6px var(--red);paint-order:stroke fill;filter:drop-shadow(3px 3px 0 #000);margin-top:6px}
+.mainv .fine{position:relative;max-width:1300px;margin:0 auto;padding:0 16px 10px;font-size:10px;color:#cbbfd2}
+
+/* ---------- 金枠の見出し帯 ---------- */
+.ttl{position:relative;padding-block:16px;background:linear-gradient(180deg,#ffe58a,var(--gold) 45%,var(--gold-d) 100%);border-block:3px solid #7a4a00}
+.ttl::before{content:"";position:absolute;inset:6px 0;background:
+  repeating-linear-gradient(90deg,transparent 0 40px,rgba(255,255,255,.35) 40px 44px,transparent 44px 88px),
+  linear-gradient(90deg,#d43a6a 0 12%,transparent 12% 88%,#2bb7b3 88%)}
+.ttl h2{position:relative;margin:0 auto;width:min(560px,86%);text-align:center;font-family:var(--f-display);font-size:clamp(22px,3vw,34px);color:#fff;padding:6px 40px;
+  background:linear-gradient(90deg,var(--red) 0 50%,var(--navy) 50%);border:3px solid var(--gold-hi);border-radius:999px;box-shadow:0 0 0 3px #7a4a00, 0 4px 0 5px rgba(0,0,0,.2);
+  text-shadow:0 2px 0 rgba(0,0,0,.4)}
+.ttl h2::before,.ttl h2::after{content:"";position:absolute;top:50%;width:22px;height:22px;margin-top:-11px;border:3px solid var(--gold);border-radius:50%;border-right-color:transparent}
+.ttl h2::before{left:12px}.ttl h2::after{right:12px;transform:rotate(180deg)}
+
+/* ---------- 中身 ---------- */
+.body{max-width:1100px;margin:0 auto;padding:36px 16px 56px;display:flex;flex-direction:column;gap:28px}
+.lead{max-width:760px;margin:0 auto;text-align:center;font-weight:700}
+.sub{font-family:var(--f-display);font-size:22px;display:flex;align-items:center;gap:10px;border-bottom:3px solid var(--red);padding-bottom:4px}
+.sub::before{content:"";width:14px;height:14px;background:var(--red);transform:rotate(45deg)}
+.tbl{overflow-x:auto;min-width:0}
+table{width:100%;border-collapse:collapse;background:#fff;font-variant-numeric:tabular-nums}
+th,td{border:1px solid var(--line);padding:10px 14px;font-size:14px;text-align:left}
+th{background:linear-gradient(180deg,#ffeef1,#ffdfe4);color:var(--red-d);font-weight:900;white-space:nowrap}
+thead th{background:var(--red);color:#fff;text-align:center}
+td.n{text-align:right;font-family:var(--f-num);font-size:20px}
+td strong{font-family:var(--f-num);font-size:22px;font-weight:400}
+.note{font-size:11px;color:var(--muted);line-height:1.6}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.two > *{min-width:0}
+.panel{background:#fff;border:1px solid var(--line);box-shadow:0 3px 0 var(--line)}
+.panel .ph{aspect-ratio:4/3;background:#000;overflow:hidden;max-width:100%}
+.panel .ph img{width:100%;height:100%;object-fit:cover}
+.panel .tx{padding:14px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.panel h3{font-family:var(--f-display);font-size:20px;line-height:1.3;color:var(--red-d)}
+.panel p{margin:0;font-size:14px}
+.stars{color:var(--red);letter-spacing:2px;font-size:14px;font-weight:900}
+.stars i{font-style:normal;color:#e5d6da}
+.chip{display:inline-block;align-self:flex-start;font-size:11px;font-weight:900;padding:1px 10px;background:var(--red);color:#fff}
+.chip.t{background:var(--teal)}.chip.g{background:var(--gold);color:#5a2a00}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid3 > *{min-width:0}
+.cast{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.cast figure{margin:0;text-align:center;background:#fff;border:1px solid var(--line);padding:8px}
+.cast img{width:100%;aspect-ratio:1;object-fit:contain}
+.cast figcaption{font-size:12px;font-weight:900}
+.cast figcaption span{display:block;font-weight:500;color:var(--muted);font-size:11px}
+.flow{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:center;gap:8px}
+.fl{background:#fff;border:3px solid var(--navy);text-align:center;padding:16px}
+.fl h3{font-family:var(--f-display);font-size:20px}
+.fl p{margin:4px 0 0;font-size:13px}
+.fl.hot{border-color:var(--red);background:linear-gradient(180deg,#fff,#ffe9ec)}
+.fl.hot h3{color:var(--red)}
+.ar{width:0;height:0;border-left:22px solid var(--red);border-block:18px solid transparent;justify-self:center}
+.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.paths div{background:#fff;border-left:8px solid var(--teal);padding:12px 14px;font-size:14px}
+.paths div.r{border-color:var(--red)}.paths div.g{border-color:var(--gold)}
+.paths b{font-family:var(--f-num);font-size:26px;font-weight:400;margin-right:6px}
+.holds{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
+.hold{display:flex;flex-direction:column;align-items:center;font-size:12px;font-weight:900;gap:2px}
+.hold i{width:36px;height:36px;border-radius:50%;display:block;border:3px solid #fff;box-shadow:0 0 0 2px var(--ink),inset -4px -5px 7px rgba(0,0,0,.3)}
+.hold .w{background:#f4f4f4}.hold .b{background:#2b7bff}.hold .gr{background:#2ed35a}.hold .rd{background:#ff1d3a}
+.hold .rb{background:conic-gradient(#ff3b3b,#ffb21a,#fff23a,#3dff7a,#29e6ff,#8c3cff,#ff3b3b);animation:spin 2.4s linear infinite}
+.bignum{text-align:center;font-family:var(--f-num);font-size:clamp(70px,14vw,170px);line-height:1;color:var(--red);-webkit-text-stroke:3px #fff;paint-order:stroke fill;filter:drop-shadow(4px 4px 0 var(--gold))}
+.bignum small{font-family:var(--f-display);font-size:.3em}
+.keys{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.keys div{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);padding:10px 14px;font-size:14px}
+.keys kbd{font-family:var(--f-num);font-size:16px;background:var(--navy);color:#fff;padding:2px 10px;border-radius:4px;white-space:nowrap}
+
+/* ---------- フッター ---------- */
+.pagetop{display:block;width:max-content;margin:0 auto 24px;text-decoration:none;font-weight:900;font-size:12px;color:var(--red-d);border:2px solid var(--red);padding:4px 18px;border-radius:999px;background:#fff}
+footer{background:#fff;border-top:6px solid var(--red);padding:22px 16px 30px;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}
+footer .acc{font-weight:900;font-size:13px}
+footer .icons{display:flex;gap:10px}
+footer .icons span{width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--f-latin);font-size:12px}
+footer .warn{max-width:760px;border:2px solid var(--ink);padding:8px 14px;font-weight:900;font-size:13px}
+footer .note{max-width:760px}
+footer .cr{font-family:var(--f-latin);font-size:11px;letter-spacing:.08em;color:var(--muted)}
+
+
+/* ---------- ネタバレ対策 ---------- */
+[hidden]{display:none!important}
+.gnav a.spo{background:linear-gradient(180deg,#5a5a6a,#2a2a36 50%,#121218);text-shadow:none}
+.gnav a.spo[aria-current="page"]{color:var(--gold-hi)}
+.veil{position:relative}
+.veil img{filter:blur(16px) saturate(.5) brightness(.6);transform:scale(1.15)}
+.veil .stamp{position:absolute;left:50%;top:50%;translate:-50% -50%;rotate:-8deg;font-family:var(--f-num);font-size:clamp(22px,3vw,36px);letter-spacing:.2em;color:#fff;border:3px solid #fff;padding:2px 14px;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+.cast.secret img{filter:brightness(0) drop-shadow(0 0 1px rgba(255,255,255,.5));opacity:.85}
+.cast .lock{display:flex;flex-direction:column;justify-content:center;background:var(--ink);color:#fff}
+.cast .lock .q{font-family:var(--f-num);font-size:64px;line-height:1;color:var(--gold)}
+.cast .lock figcaption span{color:#cbbfd2}
+.locked{display:flex;flex-direction:column;align-items:center;gap:8px;padding:36px 16px;background:repeating-linear-gradient(-45deg,#1b1220 0 14px,#251a2c 14px 28px);color:#fff;text-align:center}
+.locked b{font-family:var(--f-num);font-size:56px;font-weight:400;color:var(--gold);line-height:1}
+.locked a{font-weight:900;color:var(--gold-hi)}
+.gate{display:flex;justify-content:center}
+.gate-in{max-width:620px;width:100%;text-align:center;background:#fff;border:3px solid var(--ink);box-shadow:8px 8px 0 var(--gold);padding:28px 20px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.gate-in h3{font-family:var(--f-display);font-size:26px}
+.gate-in p{margin:0}
+.warnmark{width:56px;height:56px;display:grid;place-items:center;background:var(--gold);color:var(--ink);font-family:var(--f-num);font-size:34px;clip-path:polygon(50% 0,100% 100%,0 100%);padding-top:12px}
+.gate-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center}
+.gbtn{font:inherit;font-weight:900;font-size:15px;border:2px solid var(--red);background:var(--red);color:#fff;padding:8px 20px;border-radius:999px;cursor:pointer;text-decoration:none}
+.gbtn.ghost{background:#fff;color:var(--red-d)}
+.gq{width:100%;font-weight:900;color:var(--red-d)}
+.spoilers{display:flex;flex-direction:column;gap:22px}
+.sp-bar{display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:var(--gold-hi);padding:8px 14px;font-weight:900}
+.sp-bar button{font:inherit;font-weight:900;border:1px solid var(--gold);background:transparent;color:var(--gold-hi);padding:2px 14px;cursor:pointer}
+
+/* ---------- 演出番号 ---------- */
+.shotno{position:absolute;left:1.5%;top:4.5%;z-index:12;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.72);color:#fff;font-size:12px;font-weight:700;padding:3px 10px 3px 3px;border:1px solid rgba(255,255,255,.35);max-width:70%;pointer-events:none}
+.shotno:empty{display:none}
+.shotno b{background:var(--gold);color:#000;font-family:var(--f-num);font-weight:400;font-size:15px;padding:0 6px;letter-spacing:.04em}
+.kv.nohud .shotno{display:none}
+.cues{max-width:1300px;margin:0 auto;padding:14px 16px 18px;display:flex;flex-direction:column;gap:10px}
+.cues-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:13px}
+.cues-head b{font-family:var(--f-display);font-weight:400;font-size:18px}
+.cues-head span{color:var(--muted)}
+.cues-head button{margin-left:auto;font:inherit;font-weight:900;font-size:12px;border:1px solid var(--ink);background:#fff;padding:3px 12px;cursor:pointer}
+.cuelist{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px}
+.cuelist button{display:flex;align-items:center;gap:8px;text-align:left;font:inherit;font-size:12.5px;font-weight:700;line-height:1.35;background:#fff;border:1px solid var(--line);padding:6px 10px 6px 6px;cursor:pointer;color:var(--ink);min-width:0}
+.cuelist button b{flex:none;font-family:var(--f-num);font-weight:400;font-size:15px;background:var(--ink);color:#fff;padding:1px 6px}
+.cuelist button:hover{border-color:var(--red)}
+.cuelist button.now{border-color:var(--red);background:#fff1f3}
+.cuelist button.now b{background:var(--red)}
+
+/* ---------- PROMOTION MOVIE（ページ内で再生するCM） ---------- */
+.pv{position:relative;width:100%;max-width:960px;margin:0 auto;background:#000;container-type:inline-size;box-shadow:0 0 0 3px var(--gold),0 6px 0 6px rgba(0,0,0,.15)}
+.pvstage{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:#000;font-family:"Noto Sans JP","Hiragino Sans",sans-serif}
+.pv .sc{position:absolute;inset:0;display:none;overflow:hidden}
+.pv .sc.on{display:block}
+.pv .mincho{font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:900}
+/* CM-1 導入 */
+.pv .c1{background:#050505}
+.pv .c1 .bgp{position:absolute;left:50%;bottom:-40%;height:170%;width:auto;max-width:none;translate:-50% 0;filter:grayscale(1) contrast(1.2) brightness(.65);animation:pvpush 4.5s linear both}
+@keyframes pvpush{from{transform:scale(1)}to{transform:scale(1.12)}}
+.pv .c1 .lb{position:absolute;left:0;right:0;height:11%;background:#000;z-index:2}
+.pv .c1 .lb.t{top:0}.pv .c1 .lb.b{bottom:0}
+.pv .c1 .sub{position:absolute;left:0;right:0;bottom:15%;margin:0;text-align:center;color:#fff;font-size:3.6cqw;letter-spacing:.2em;z-index:3;opacity:0;text-shadow:0 0 1cqw rgba(0,0,0,.8)}
+.pv .c1 .s-a{animation:pvsub 2s ease both .3s}
+.pv .c1 .s-b{animation:pvsub 2.1s ease both 2.3s}
+@keyframes pvsub{0%{opacity:0;filter:blur(.6cqw)}20%,80%{opacity:1;filter:none}100%{opacity:0}}
+/* CM-2 ロゴ */
+.pv .c2{background:radial-gradient(ellipse at center,#5a0010 0%,#120006 60%,#000 100%)}
+.pv .c2 .glow{position:absolute;left:50%;top:50%;width:70%;aspect-ratio:2/1;translate:-50% -50%;background:radial-gradient(ellipse,rgba(255,200,80,.55),transparent 65%);animation:pvglow 3.5s ease both}
+@keyframes pvglow{0%{opacity:0;transform:scale(.4)}15%{opacity:1;transform:scale(1.1)}100%{opacity:.8;transform:scale(1.25)}}
+.pv .c2 .spk{position:absolute;inset:0;background:radial-gradient(circle,#fff 0 1.5px,transparent 2px) 0 0/7% 12%,radial-gradient(circle,#ffd86b 0 1px,transparent 1.5px) 3% 6%/9% 15%;opacity:.5;animation:pvspk 3.5s linear both}
+@keyframes pvspk{to{background-position:0 -40%,3% -60%}}
+.pv .c2 .kick{position:absolute;left:0;right:0;top:20%;text-align:center;font-family:"Archivo Black","Anton",sans-serif;font-size:1.5cqw;letter-spacing:.5em;color:#ffd86b;opacity:0;animation:fin .5s ease .5s forwards}
+.pv .c2 .lg{position:absolute;left:50%;top:52%;width:58%;translate:-50% -50%;opacity:0;filter:drop-shadow(0 0 2cqw rgba(255,190,60,.6));animation:pvslam .6s cubic-bezier(.2,1.5,.4,1) .15s forwards}
+@keyframes pvslam{0%{opacity:0;transform:scale(2.6);filter:blur(1cqw)}100%{opacity:1;transform:none}}
+.pv .c2 .new{position:absolute;left:8%;top:12%;font-family:"Dela Gothic One",sans-serif;font-size:3.4cqw;color:#fff;background:#e60023;padding:.2cqw 1.6cqw;transform:rotate(-8deg);opacity:0;animation:pvpop .35s cubic-bezier(.2,1.6,.4,1) 1s forwards;box-shadow:.4cqw .4cqw 0 #000}
+@keyframes pvpop{from{opacity:0;transform:rotate(-8deg) scale(.2)}to{opacity:1;transform:rotate(-8deg)}}
+/* CM-3 見どころ */
+.pv .c3{background:#000}
+.pv .cut3{position:absolute;inset:0;opacity:0;animation:pvcut 1.4s steps(1) both;animation-delay:calc(var(--k) * 1.4s)}
+@keyframes pvcut{0%{opacity:1}99%{opacity:1}100%{opacity:0}}
+.pv .cut3 img{width:100%;height:100%;object-fit:cover;animation:pvzoom 1.4s linear both;animation-delay:inherit}
+@keyframes pvzoom{from{transform:scale(1.15) rotate(-1deg)}to{transform:scale(1)}}
+.pv .cut3 .tag{position:absolute;left:4%;bottom:8%;background:rgba(0,0,0,.82);color:#f8f04a;font-weight:900;font-size:2.4cqw;padding:.4cqw 1.4cqw;border-left:.6cqw solid #e60023}
+/* CM-4 図柄 */
+.pv .c4{background:linear-gradient(160deg,#1b0d2a,#05030a)}
+.pv .grid9{position:absolute;left:50%;top:44%;translate:-50% -50%;display:grid;grid-template-columns:repeat(9,1fr);gap:.8cqw;width:92%}
+.pv .grid9 i{display:block;aspect-ratio:1;border:.35cqw solid #ffcf3a;box-shadow:0 0 1cqw rgba(255,207,58,.6);overflow:hidden;opacity:0;animation:pvpop2 .35s cubic-bezier(.2,1.6,.4,1) forwards;animation-delay:calc(.15s + var(--i) * .1s)}
+.pv .grid9 img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes pvpop2{from{opacity:0;transform:translateY(-60%) scale(.6)}to{opacity:1;transform:none}}
+.pv .cap4{position:absolute;left:0;right:0;bottom:16%;text-align:center;color:#fff;font-weight:900;font-size:4.4cqw;opacity:0;animation:pvslam .5s cubic-bezier(.2,1.5,.4,1) 1.3s forwards}
+.pv .cap4 b{color:#ffcf3a}
+/* CM-5 スペック */
+.pv .c5{background:radial-gradient(ellipse at center,#4a1200 0%,#1a0400 55%,#000 100%)}
+.pv .c5 .burst{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,190,60,.35) 0%,rgba(255,120,0,.12) 30%,transparent 55%),radial-gradient(circle,#fff 0 1px,transparent 1.5px) 0 0/6% 10%;animation:pvpulse 1.5s ease-in-out infinite}
+@keyframes pvpulse{50%{opacity:.6;transform:scale(1.06)}}
+.pv .sp{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0}
+.pv .sp .lbl{font-family:"Dela Gothic One",sans-serif;font-size:3.6cqw;color:#fff;background:#e60023;padding:.2cqw 1.8cqw;transform:skewX(-10deg);box-shadow:.4cqw .4cqw 0 #000;margin-bottom:1cqw}
+.pv .n{font-family:"Anton","Impact",sans-serif;font-style:italic;font-size:15cqw;line-height:1;letter-spacing:.01em}
+.pv .n small{font-size:.45em}
+.pv .g3{background:linear-gradient(180deg,#fffbe0 0%,#ffd84a 35%,#c27a00 52%,#ffe27a 70%,#a85d00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 .3cqw 0 #6b3500) drop-shadow(0 .6cqw 0 #3a1c00) drop-shadow(0 0 1.6cqw rgba(255,170,0,.6))}
+.pv .rb{background:linear-gradient(90deg,#ff3b3b,#ffb21a,#fff23a,#3dff7a,#29e6ff,#6b6bff,#ff4fd8,#ff3b3b);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:pvrb 1.2s linear infinite;filter:drop-shadow(0 .35cqw 0 #3a0050) drop-shadow(0 0 2cqw rgba(255,255,255,.6))}
+@keyframes pvrb{to{background-position:200% 0}}
+.pv .sp1{animation:pvsp 1.5s ease both 0s}
+.pv .sp2{animation:pvsp 1.5s ease both 1.5s}
+.pv .sp3{animation:pvsp 1.5s ease both 3s}
+.pv .sp4{animation:pvsp4 2.5s ease both 4.5s}
+@keyframes pvsp{0%{opacity:0;transform:scale(2.2)}12%{opacity:1;transform:scale(.96)}18%{transform:none}88%{opacity:1;transform:scale(1.04)}100%{opacity:0;transform:scale(1.1)}}
+@keyframes pvsp4{0%{opacity:0;transform:scale(2.4)}10%{opacity:1;transform:scale(.95)}16%,100%{opacity:1;transform:none}}
+.pv .ribbon{font-family:"Dela Gothic One",sans-serif;font-size:3.4cqw;color:#fff;background:linear-gradient(180deg,#ff2b45,#b8001b);padding:.4cqw 3cqw;clip-path:polygon(3% 0,97% 0,100% 50%,97% 100%,3% 100%,0 50%);margin-bottom:.8cqw}
+.pv .lbl2{font-family:"Dela Gothic One",sans-serif;font-size:2.6cqw;color:#ffd86b;margin-top:.6cqw}
+.pv .fine5{position:absolute;right:2%;bottom:2%;margin:0;font-size:1cqw;color:rgba(255,255,255,.6)}
+/* CM-6 役物 */
+.pv .c6{background:#07050d}
+.pv .cab6{position:absolute;left:50%;top:50%;height:150%;width:auto;max-width:none;translate:-50% -50%;animation:pvcab 4s cubic-bezier(.3,.6,.2,1) both}
+@keyframes pvcab{0%{transform:scale(1.6) translateY(18%)}45%{transform:scale(1.25) translateY(10%)}100%{transform:scale(.62) translateY(0)}}
+.pv .call{position:absolute;font-family:"Dela Gothic One",sans-serif;font-size:4.2cqw;color:#fff;background:#e60023;padding:.3cqw 1.6cqw;box-shadow:.5cqw .5cqw 0 #000;opacity:0;transform:rotate(-6deg)}
+.pv .call b{color:#ffe14a;font-weight:400}
+.pv .c-a{left:5%;top:14%;animation:pvpop .35s cubic-bezier(.2,1.6,.4,1) .4s forwards}
+.pv .c-b{right:5%;bottom:16%;animation:pvpop .35s cubic-bezier(.2,1.6,.4,1) 1.6s forwards}
+.pv .mt6{position:absolute;right:3%;top:5%;font-family:"Archivo Black",sans-serif;font-size:2cqw;letter-spacing:.4em;color:rgba(255,255,255,.7)}
+/* CM-7 エンドカード */
+.pv .c7{background:#fbfaf8}
+.pv .shapes i{position:absolute;opacity:.85}
+.pv .tri{width:0;height:0;border-left:3cqw solid transparent;border-right:3cqw solid transparent;border-bottom:5cqw solid #ff6f8e}
+.pv .tri.a{left:6%;top:8%;transform:rotate(-14deg)}.pv .tri.b{right:30%;bottom:8%;border-bottom-color:#45c4c4;transform:rotate(20deg)}
+.pv .cir{width:5cqw;aspect-ratio:1;border-radius:50%;border:.7cqw solid #45c4c4}
+.pv .cir.a{left:40%;top:10%}.pv .cir.b{left:8%;bottom:12%;border-color:#ff6f8e}
+.pv .sq{width:4cqw;aspect-ratio:1;border:.6cqw solid #e60023;transform:rotate(18deg)}
+.pv .sq.a{left:30%;bottom:16%}.pv .sq.b{right:6%;top:10%;border-color:#45c4c4}
+.pv .c7 .shapes i{animation:pvfloat 3s ease-in-out infinite alternate}
+@keyframes pvfloat{to{translate:0 -1.2cqw;rotate:12deg}}
+.pv .conf{position:absolute;inset:0;background:
+  linear-gradient(#e60023,#e60023) 10% 0/1cqw 2cqw no-repeat,linear-gradient(#45c4c4,#45c4c4) 30% 0/1.2cqw .8cqw no-repeat,linear-gradient(#ffcf3a,#ffcf3a) 52% 0/.8cqw 1.6cqw no-repeat,
+  linear-gradient(#ff6f8e,#ff6f8e) 70% 0/1.2cqw 1.2cqw no-repeat,linear-gradient(#e60023,#e60023) 88% 0/.9cqw 1.8cqw no-repeat;animation:pvconf 2.6s linear infinite}
+@keyframes pvconf{from{background-position:10% -10%,30% -30%,52% -5%,70% -20%,88% -12%}to{background-position:12% 110%,27% 120%,55% 105%,67% 115%,90% 112%}}
+.pv .lg7{position:absolute;left:5%;top:20%;width:52%;opacity:0;animation:pvslam .6s cubic-bezier(.2,1.5,.4,1) .1s forwards}
+.pv .cab7{position:absolute;right:6%;top:8%;height:84%;width:auto;max-width:none;box-shadow:0 1cqw 2cqw rgba(0,0,0,.3);opacity:0;animation:slidein .7s cubic-bezier(.2,.9,.2,1) .35s forwards}
+.pv .bdg7{position:absolute;left:6%;bottom:22%;display:flex;gap:1cqw;opacity:0;animation:fin .4s ease .8s forwards}
+.pv .bdg7 span{font-weight:900;font-size:1.8cqw;padding:.4cqw 1.2cqw;border:.25cqw solid #e60023;color:#e60023;background:#fff}
+.pv .bdg7 span:first-child{background:#e60023;color:#fff}
+.pv .date7{position:absolute;left:6%;bottom:9%;font-weight:900;font-size:2.4cqw;color:#222;opacity:0;animation:fin .4s ease 1s forwards}
+.pv .date7 b{font-family:"Anton",sans-serif;font-size:1.6em;font-weight:400;color:#e60023;margin-right:.6cqw}
+/* CM-8 お断り */
+.pv .c8{background:#fff;display:none;align-items:center;justify-content:center}
+.pv .c8.on{display:flex}
+.pv .note8{width:72%;text-align:center;color:#111}
+.pv .note8 h4{margin:0 0 1.4cqw;font-size:2.6cqw}
+.pv .note8 p{margin:0;font-size:1.6cqw;line-height:1.8;text-align:left}
+/* 操作 */
+.pv .pvplay{position:absolute;left:0;right:0;top:0;aspect-ratio:16/9;max-width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6cqw;background:rgba(0,0,0,.35);border:0;color:#fff;cursor:pointer;font:inherit;z-index:5}
+.pv .pvplay span{width:11cqw;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-size:4.6cqw;background:#e60023;box-shadow:0 0 0 .5cqw #fff,0 0 3cqw rgba(230,0,35,.7);padding-left:.6cqw}
+.pv .pvplay b{font-family:"Archivo Black",sans-serif;font-weight:400;font-size:2.4cqw;letter-spacing:.3em;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.pv .pvplay small{font-size:1.4cqw;font-weight:700;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.pv.playing .pvplay{display:none}
+.pv .pvbar{display:flex;align-items:center;gap:10px;padding:8px 10px;background:#111;color:#fff;font-size:12px}
+.pv .pvno{font-family:"Anton",sans-serif;font-size:14px;background:var(--gold);color:#000;padding:0 6px;letter-spacing:.04em}
+.pv .pvprog{flex:1;height:4px;background:#333;min-width:0}
+.pv .pvprog i{display:block;height:100%;width:0;background:#e60023}
+.pv .pvtime{font-variant-numeric:tabular-nums}
+.pv .pvbar button{font:inherit;font-weight:900;font-size:12px;background:#fff;color:#111;border:0;padding:3px 10px;cursor:pointer}
+@media (max-width:600px){.pv .pvbar{gap:6px;font-size:11px}.pv .pvplay small{display:none}}
+/* ---------- 狭い画面 ---------- */
+@media (max-width:900px){
+  .gnav ul{grid-template-columns:repeat(4,1fr)}
+  .mainv .inner,.two{grid-template-columns:1fr}
+  .mainv .figure img{max-width:300px;margin-inline:auto}
+  .callout{left:0}
+  .grid3,.paths{grid-template-columns:1fr}
+  .cast{grid-template-columns:repeat(3,1fr)}
+  .flow{grid-template-columns:1fr}
+  .ar{transform:rotate(90deg)}
+}
+@media (max-width:600px){
+  .gnav ul{grid-template-columns:repeat(3,1fr)}
+  .gnav a{min-height:46px;font-size:11px}
+  .keys{grid-template-columns:1fr}
+}
+
+
+/* ---------- PROMOTION MOVIE v2（映像クリップをつなぐCM） ---------- */
+.pv .k{position:absolute;inset:0;display:none;overflow:hidden}
+.pv .k.on{display:block}
+.pv .k video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.pv .x1 .lb{position:absolute;left:0;right:0;height:10%;background:#000;z-index:3}
+.pv .x1 .lb.t{top:0}.pv .x1 .lb.b{bottom:0}
+.pv .x1 .grainv{position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 3px);pointer-events:none}
+.pv .x1 .k video{filter:saturate(.75) contrast(1.05) brightness(.85);animation:pvpush 2.6s linear both}
+.pv .subt{position:absolute;left:0;right:0;bottom:13%;margin:0;z-index:4;text-align:center;color:#fff;font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:700;font-size:max(12px,2.9cqw);letter-spacing:.18em;text-shadow:0 0 .6cqw rgba(0,0,0,.9),0 0 2cqw rgba(0,0,0,.6);animation:pvsubin .5s ease both .15s}
+@keyframes pvsubin{from{opacity:0;filter:blur(.5cqw)}to{opacity:1;filter:none}}
+.pv .lgk{background:radial-gradient(ellipse at center,#5a0010 0%,#120006 60%,#000 100%)}
+.pv .lgk .glow{position:absolute;left:50%;top:50%;width:70%;aspect-ratio:2/1;translate:-50% -50%;background:radial-gradient(ellipse,rgba(255,200,80,.55),transparent 65%);animation:pvglow 2.3s ease both}
+.pv .lgk .spk{position:absolute;inset:0;background:radial-gradient(circle,#fff 0 1.5px,transparent 2px) 0 0/7% 12%,radial-gradient(circle,#ffd86b 0 1px,transparent 1.5px) 3% 6%/9% 15%;opacity:.5;animation:pvspk 2.3s linear both}
+.pv .lgk .kick{position:absolute;left:0;right:0;top:20%;text-align:center;font-family:"Archivo Black","Anton",sans-serif;font-size:max(8px,1.5cqw);letter-spacing:.5em;color:#ffd86b;opacity:0;animation:fin .5s ease .5s forwards}
+.pv .lgk .lg{position:absolute;left:50%;top:53%;width:58%;translate:-50% -50%;opacity:0;filter:drop-shadow(0 0 2cqw rgba(255,190,60,.6));animation:pvslam .6s cubic-bezier(.2,1.5,.4,1) .1s forwards}
+.pv .lgk .new{position:absolute;left:8%;top:12%;font-family:"Dela Gothic One",sans-serif;font-size:max(14px,3.4cqw);color:#fff;background:#e60023;padding:.2cqw 1.6cqw;transform:rotate(-8deg);opacity:0;animation:pvpop .35s cubic-bezier(.2,1.6,.4,1) .8s forwards;box-shadow:.4cqw .4cqw 0 #000}
+.pv .x3 .k video{animation:pvzoom .9s linear both}
+.pv .tagv{position:absolute;left:4%;bottom:8%;z-index:3;background:rgba(0,0,0,.82);color:#f8f04a;font-weight:900;font-size:max(12px,2.6cqw);padding:.4cqw 1.4cqw;border-left:.6cqw solid #e60023;animation:pvtag .3s cubic-bezier(.2,1.4,.4,1) both .1s}
+@keyframes pvtag{from{opacity:0;transform:translateX(-30%)}to{opacity:1;transform:none}}
+.pv .shk video{animation:pvshk .3s linear both}
+@keyframes pvshk{0%{transform:scale(1.25)}20%{transform:scale(1.05) translate(-1.5%,1%)}40%{transform:scale(1.05) translate(1.2%,-1%)}60%{transform:scale(1.03) translate(-.6%,.4%)}100%{transform:scale(1)}}
+.pv .x5 .k video{animation:pvzoom 1.7s linear both}
+.pv .x6 .dim{filter:brightness(.45) saturate(1.2)}
+.pv .x6 .who6{position:absolute;right:2%;bottom:-6%;height:115%;width:auto;max-width:none;filter:drop-shadow(0 0 1.5cqw rgba(255,160,40,.6));animation:pvwho .7s cubic-bezier(.15,.9,.25,1) both}
+@keyframes pvwho{from{opacity:0;transform:translateX(12%)}to{opacity:1;transform:none}}
+.pv .x6 .sp{right:36%}
+.pv .x6 .sumrow{display:flex;gap:1.2cqw;flex-wrap:wrap;justify-content:center;margin-top:1cqw}
+.pv .x6 .sumrow span{font-family:"Dela Gothic One",sans-serif;font-size:max(11px,2.6cqw);color:#fff;background:rgba(0,0,0,.6);border:.2cqw solid #ffd84a;padding:.4cqw 1.2cqw}
+.pv .x6 .sp4{animation:pvsp4 2.5s ease both 4.5s}
+.pv .x7 .dim2{filter:brightness(.55)}
+.pv .rbwrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6cqw;animation:pvsp4 2.6s ease both}
+.pv .n.big{font-size:20cqw}
+.pv .pvflash{position:absolute;inset:0;background:#fff;opacity:0;z-index:9;pointer-events:none}
+.pv .pvflash.on{animation:pvfl .14s linear}
+@keyframes pvfl{0%{opacity:.9}100%{opacity:0}}
+
+@media (max-width:600px){
+  .kv .sV .verse p{font-size:8cqw;right:4%}
+  .kv .sV .verse .punch{font-size:9.6cqw;right:4%}
+}
+
+/* ---------- 書式の見直し（重なり・欠け・読みにくさ） ---------- */
+.kv .s5 .duo{filter:grayscale(1) contrast(1.2) brightness(.42) blur(2px)}
+.kv .s6 .duo,.kv .s8 .duo{filter:grayscale(1) contrast(1.2) brightness(.28) blur(5px)}
+.kv .sM .ttlR .en{font-size:5cqw}
+.kv .sM .ttlR .mj{font-size:1.3cqw;letter-spacing:.16em}
+@media (max-width:600px){
+  .gnav{padding:6px 0}
+  .gnav ul{display:flex;overflow-x:auto;gap:2px;padding:0 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .gnav ul::-webkit-scrollbar{display:none}
+  .gnav li{flex:none}
+  .gnav a{min-height:38px;padding:3px 14px;font-size:11px;white-space:nowrap;margin:5px 4px}
+  .gnav a small{display:inline;margin-left:4px;font-size:.85em}
+  .gnav a br{display:none}
+  .shotno{font-size:10px;max-width:62%;padding:2px 6px 2px 2px}
+  .shotno b{font-size:12px}
+  .kv .s2 .w{font-size:31cqw}
+  .kv .s4 .w{font-size:21cqw}
+  .kv .s7 .w:nth-child(1){left:6%!important;top:16%!important;font-size:8cqw!important}
+  .kv .s7 .w:nth-child(2){left:44%!important;top:26%!important;font-size:7cqw!important}
+  .kv .s7 .w:nth-child(3){left:6%!important;top:42%!important;font-size:16cqw!important}
+  .kv .s7 .w:nth-child(4){left:52%!important;top:62%!important;font-size:6cqw!important}
+  .kv .s7 .w:nth-child(5){left:6%!important;top:70%!important;font-size:11cqw!important}
+  .kv .s7 .w:nth-child(6){left:58%!important;top:80%!important;font-size:5cqw!important}
+  .kv .s7 .w:nth-child(7){left:30%!important;top:88%!important;font-size:5cqw!important}
+  .kv .sM .ttlR{top:4%;right:4%}
+  .kv .sM .ttlR .en{font-size:8cqw}
+  .kv .sM .ttlR .mj{font-size:2.4cqw}
+  .kv .sM .mach{top:26%;height:66%}
+  .kv .s9 .num{font-size:24cqw}
+}
+
+/* ---------- 書式の見直し（下層ページ） ---------- */
+.callout{left:auto;right:3%;bottom:5%;transform-origin:right bottom}
+.callout .b{font-size:clamp(18px,2.5vw,32px)}
+.slab .v{white-space:nowrap}
+.pv .pvplay{background:rgba(0,0,0,.55)}
+@media (max-width:600px){
+  .ttl h2{font-size:17px;white-space:nowrap;padding:6px 34px;width:auto;max-width:92%}
+  .ttl h2::before{left:9px;width:16px;height:16px;margin-top:-8px}
+  .ttl h2::after{right:9px;width:16px;height:16px;margin-top:-8px}
+  .slab{flex-wrap:wrap;gap:4px 10px}
+  .slab .k{font-size:14px;min-width:3.6em}
+  .slab .v{font-size:clamp(26px,9vw,38px)}
+  .slab .v + .k{margin-left:0}
+  .callout{right:0;bottom:6%}
+  .cast .lock{grid-column:1/-1;flex-direction:row;gap:12px;padding:10px}
+  .cast .lock .q{font-size:40px}
+  .kv .sM .mach{top:31%;height:62%}
+  .kv .sM .ttlR{top:11%}
+}
+
+/* ---------- テンポ：ショットごとの入りと寄り続ける動き ---------- */
+.kv .shot.on{animation:shotgo 1.4s cubic-bezier(.2,.8,.3,1) both}
+@keyframes shotgo{0%{transform:translateX(2.5%) scale(1.07);filter:blur(3px)}9%{transform:scale(1.01);filter:none}100%{transform:scale(1.06)}}
+.kv .s1.on{animation:none}
+
+/* ---------- 最後の文言（今夜祝わないといけない男がいる。） ---------- */
+.kv .endtype{font-size:4.9cqw;top:17%}
+.kv .endtype span:nth-child(3) i{font-size:1em}
+@media (max-width:600px){.kv .endtype{font-size:7cqw;top:12%}.kv .endtype em{background:#0b0b0c;padding:0 .08em}}
+
+/* ---------- スペック（整理版） ---------- */
+.specb{gap:22px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-top:4px solid var(--ink);padding:14px 14px 12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.kpi.hot{border-top-color:var(--red)}.kpi.gold{border-top-color:var(--gold)}
+.kpi .kl{font-size:12px;font-weight:900;color:var(--muted);letter-spacing:.04em}
+.kpi .kv2{font-family:var(--f-num);font-size:clamp(28px,3.2vw,40px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.kpi.hot .kv2{color:var(--red)}
+.kpi .kv2 small{font-family:var(--f-body);font-weight:900;font-size:.42em;margin-left:3px}
+.dist2{display:flex;flex-direction:column;gap:10px}
+.grp{display:grid;grid-template-columns:120px 1fr;background:#fff;border:1px solid var(--line)}
+.gname{display:flex;flex-direction:column;justify-content:center;padding:12px 16px;background:var(--ink);color:#fff;font-weight:900;font-size:16px}
+.gname small{font-size:11px;color:rgba(255,255,255,.6);font-weight:700}
+.rows{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:150px 1fr 56px;align-items:center;gap:14px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.rn{font-weight:900;font-size:14px}
+.rbar{height:10px;background:#f1e6e8;border-radius:5px;overflow:hidden}
+.rbar i{display:block;height:100%;background:var(--red);border-radius:5px}
+.rbar i.g{background:#8a8090}
+.rp{font-family:var(--f-num);font-size:20px;text-align:right;font-variant-numeric:tabular-nums}
+.spec2{display:grid;grid-template-columns:repeat(2,1fr);gap:0 24px;margin:0;background:#fff;border:1px solid var(--line);padding:6px 18px}
+.spec2 div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.spec2 dt{font-size:13px;font-weight:900;color:var(--muted)}
+.spec2 dd{margin:0;font-weight:900;font-size:15px;text-align:right}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.kpi.gold{grid-column:1/-1}}
+@media (max-width:600px){
+  .grp{grid-template-columns:1fr}.gname{flex-direction:row;align-items:baseline;gap:8px;padding:8px 14px}
+  .row{grid-template-columns:1fr 46px;gap:6px 10px;padding:9px 14px}.row .rbar{grid-column:1/-1;grid-row:2}
+  .spec2{grid-template-columns:1fr}
+}
+/* ---------- ぼかしなし ---------- */
+.veil img{filter:none;transform:none}.veil .stamp{display:none}
+/* ---------- スタッフ ---------- */
+.credits{display:flex;flex-direction:column;align-items:center;gap:30px;padding:30px 0 10px}
+.cr1{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.cr1 .role{font-size:12px;font-weight:900;letter-spacing:.3em;color:var(--red)}
+.cr1 .name{font-family:"Archivo Black",var(--f-num),sans-serif;font-size:clamp(26px,4vw,40px);letter-spacing:.06em;color:var(--ink)}
+.cr1 + .cr1{border-top:1px solid var(--line);padding-top:30px;width:min(420px,100%)}
+.crend{text-align:center;font-family:var(--f-num);letter-spacing:.3em;color:var(--muted);margin:10px 0 0}
+/* メニュー1段 */
+.gnav ul{grid-template-columns:repeat(9,1fr)}
+@media (max-width:900px){.gnav ul{grid-template-columns:repeat(5,1fr)}}
+
+/* ---------- 見出しの文字つぶれ修正 ---------- */
+.sub,.panel h3,.fl h3,.ttl h2,.slab .k,.gname{font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;font-weight:900;letter-spacing:.04em}
+.sub{font-size:21px}
+/* ---------- スペックの背景 ---------- */
+#p-spec{background:
+  radial-gradient(ellipse 70% 50% at 15% 30%,rgba(230,0,30,.28),transparent 70%),
+  radial-gradient(ellipse 60% 50% at 90% 75%,rgba(255,190,40,.18),transparent 70%),
+  repeating-linear-gradient(-45deg,rgba(255,207,58,.06) 0 2px,transparent 2px 16px),
+  linear-gradient(180deg,#1d0f2c,#0d0716)}
+#p-spec .specb{position:relative;color:#fff}
+#p-spec .specb > *{position:relative;z-index:1}
+#p-spec .specb::before{content:"SPEC";position:absolute;right:0;top:-6px;z-index:0;font-family:var(--f-num);font-size:clamp(120px,22vw,280px);line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,207,58,.16);pointer-events:none}
+#p-spec .specb::after{content:"";position:absolute;left:-40px;bottom:40px;width:260px;height:260px;border-radius:50%;z-index:0;background:radial-gradient(circle,rgba(230,0,30,.35),transparent 70%);pointer-events:none}
+#p-spec .sub{color:#fff;border-bottom-color:var(--gold)}
+#p-spec .sub::before{background:var(--gold)}
+#p-spec .kpi{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,207,58,.45);border-top:4px solid var(--gold);box-shadow:0 0 18px rgba(255,190,40,.12),inset 0 1px 0 rgba(255,255,255,.15)}
+#p-spec .kpi.hot{border-top-color:var(--red)}
+#p-spec .kpi .kl{color:rgba(255,255,255,.72)}
+#p-spec .kpi .kv2{background:linear-gradient(180deg,#fffbe0 0%,#ffd84a 40%,#c27a00 58%,#ffe27a 80%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #4a2400)}
+#p-spec .kpi.hot .kv2{background:linear-gradient(180deg,#ffd0d6,#ff3a52 50%,#b00018);-webkit-background-clip:text;background-clip:text}
+#p-spec .kpi .kv2 small{color:#ffe27a;-webkit-text-fill-color:#ffe27a}
+#p-spec .grp{background:rgba(255,255,255,.05);border:1px solid rgba(255,207,58,.35)}
+#p-spec .gname{background:linear-gradient(180deg,#e60023,#9c0014)}
+#p-spec .row{border-bottom-color:rgba(255,255,255,.1)}
+#p-spec .rn{color:#fff}
+#p-spec .rbar{background:rgba(255,255,255,.1)}
+#p-spec .rbar i{background:linear-gradient(90deg,#ff3a52,#ffcf3a)}
+#p-spec .rbar i.g{background:rgba(255,255,255,.45)}
+#p-spec .rp{color:#ffe27a}
+#p-spec .spec2{background:rgba(255,255,255,.05);border:1px solid rgba(255,207,58,.35)}
+#p-spec .spec2 div{border-bottom-color:rgba(255,255,255,.12)}
+#p-spec .spec2 dt{color:rgba(255,255,255,.65)}
+#p-spec .spec2 dd{color:#fff}
+#p-spec .note{color:rgba(255,255,255,.55)}
+#p-spec .body{padding-bottom:64px}
+/* ---------- スタッフ（2人の名前を別の行に） ---------- */
+.cr1 .name + .name{margin-top:-2px}
+
+/* ---------- 確認用の演出番号を表示しない ---------- */
+.shotno,.cues{display:none!important}
+
+/* ---------- スペック：誕生日の背景・「7」の欠け修正 ---------- */
+.slab .v,.kpi .kv2,.pv .n,.g3{padding-right:.14em}
+.slab .v + .k{margin-left:0}
+#p-spec{position:relative;overflow:hidden;background:
+  radial-gradient(circle,#ff4f7b 0 2.5px,transparent 3px) 0 0/90px 110px,
+  radial-gradient(circle,#ffcf3a 0 2px,transparent 2.5px) 30px 50px/120px 90px,
+  radial-gradient(circle,#29c4e6 0 2px,transparent 2.5px) 70px 20px/100px 130px,
+  linear-gradient(115deg,transparent 0 47%,rgba(255,207,58,.35) 47% 49%,transparent 49%) 10px 70px/140px 160px,
+  linear-gradient(65deg,transparent 0 47%,rgba(255,79,123,.35) 47% 49%,transparent 49%) 80px 10px/170px 150px,
+  radial-gradient(ellipse 70% 45% at 15% 35%,rgba(255,79,123,.3),transparent 70%),
+  radial-gradient(ellipse 60% 45% at 90% 70%,rgba(255,207,58,.2),transparent 70%),
+  linear-gradient(180deg,#3d0b33,#1c0820)}
+#p-spec > *{position:relative;z-index:1}
+#p-spec > .bday{position:absolute;inset:0;z-index:0;pointer-events:none}
+.bday .bl{position:absolute;width:64px;height:78px;border-radius:50% 50% 47% 47%/56% 56% 44% 44%;
+  background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.75),transparent 20%),var(--c);box-shadow:inset -8px -10px 0 rgba(0,0,0,.18);animation:blfloat 5s ease-in-out infinite alternate}
+.bday .bl::before{content:"";position:absolute;left:50%;bottom:-7px;margin-left:-6px;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:9px solid var(--c);transform:rotate(180deg)}
+.bday .bl::after{content:"";position:absolute;left:50%;top:calc(100% + 6px);width:1.5px;height:110px;background:linear-gradient(rgba(255,255,255,.55),transparent)}
+@keyframes blfloat{to{transform:translateY(-16px) rotate(4deg)}}
+#p-spec .mainv{background:
+  radial-gradient(circle,#ff4f7b 0 3px,transparent 3.5px) 0 0/80px 90px,
+  radial-gradient(circle,#ffcf3a 0 2.5px,transparent 3px) 40px 40px/110px 80px,
+  radial-gradient(circle,#29c4e6 0 2.5px,transparent 3px) 20px 60px/95px 120px,
+  radial-gradient(ellipse 60% 70% at 70% 60%,rgba(255,79,123,.45),transparent 70%),
+  linear-gradient(160deg,#6a1450,#2a0a2a)}
+#p-spec .specb::before{content:"HAPPY\A BIRTHDAY";white-space:pre;text-align:right;font-size:clamp(70px,11vw,150px);line-height:.9;-webkit-text-stroke:2px rgba(255,207,58,.18)}
+.flags{height:34px;margin:-14px -16px 4px}
+.flags svg{width:100%;height:100%;display:block}
+@media (max-width:600px){
+  .bday .bl{width:40px;height:50px;opacity:.7}
+  .bday .bl::after{height:70px}
+  #p-spec .specb::before{font-size:56px}
+}
+/* ---------- スマホの修正（TOP下の帯・CMの文字） ---------- */
+@media (max-width:600px){
+  .kv .kvside{height:auto}
+  .kv .bnr,.kv .bnr.red{font-size:0;padding:8px 6px;justify-content:center;gap:4px}
+  .kv .bnr b,.kv .bnr.red b{font-size:12px}
+  .kv .bnr::after{font-size:12px;margin-left:2px}
+  .kv .endtype small{display:none}
+  .kv .machcard{width:21%;top:9%}
+  .kv .logowrap{bottom:27%}
+  .kv .kvbadges{bottom:13%}
+  .pv .c1 .sub{font-size:max(12px,3.6cqw)}
+  .pv .c2 .kick{font-size:max(8px,1.5cqw);letter-spacing:.3em}
+  .pv .cut3 .tag{font-size:max(11px,2.4cqw)}
+  .pv .cap4{font-size:max(15px,4.4cqw)}
+  .pv .sp .lbl{font-size:max(13px,3.6cqw)}
+  .pv .ribbon{font-size:max(12px,3.4cqw)}
+  .pv .lbl2{font-size:max(11px,2.6cqw)}
+  .pv .fine5{font-size:9px}
+  .pv .call{font-size:max(13px,4.2cqw)}
+  .pv .mt6{font-size:max(9px,2cqw)}
+  .pv .bdg7 span{font-size:max(9px,1.8cqw);padding:2px 5px}
+  .pv .date7{font-size:max(11px,2.4cqw)}
+  .pv .note8{width:88%}.pv .note8 h4{font-size:14px;margin-bottom:6px}.pv .note8 p{font-size:9.5px;line-height:1.6}
+  .pv .pvplay b{font-size:max(11px,2.4cqw)}
+  .pv .pvplay span{width:16cqw;font-size:6cqw}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+<div class="gbar" id="pagetop">
+  <a class="gmark" href="#top" aria-label="TOPへ">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 L24 14 L35 12 L27 21 L33 32 L21 27 L12 36 L13 24 L3 19 L14 15 Z" fill="#fff"/></svg>
+    <span>momiji birthday works</span>
+  </a>
+</div>
+
+<nav class="gnav" aria-label="機種サイトメニュー">
+  <ul>
+    <li><a href="#top">TOP</a></li>
+    <li><a href="#pv"><span>PROMOTION<small>MOVIE</small></span></a></li>
+    <li><a href="#intro">コンテンツ紹介</a></li>
+    <li><a href="#spec">スペック</a></li>
+    <li><a href="#flow">ゲームフロー</a></li>
+    <li><a href="#cabinet">筐体紹介</a></li>
+    <li><a href="#hall">導入情報</a></li>
+    <li><a href="#beginner"><span>初めての<small>誕生祭</small></span></a></li>
+    <li><a href="#staff">スタッフ</a></li>
+  </ul>
+</nav>
+
+<main>
+<!-- ================= TOP ================= -->
+<section class="page" id="p-top" data-title="TOP">
+  <div class="kv" id="kv">
+    <div class="stage">
+      <div class="kbg"></div><div class="grain"></div>
+      <div class="hex"></div>
+      <div class="full">
+        <div class="halo"></div>
+        <div class="rings"><i></i><i></i><i></i></div>
+        <div class="orbit"></div>
+        <div class="redpanel"><i class="scan2"></i><i class="rbar"></i></div><div class="num25">25</div>
+        <div class="floor"></div>
+        <img class="person" src="img/person.webp" alt="スーツ姿で立つヨシノコウヨウ">
+      </div>
+      <div class="streaks"><i></i><i></i><i></i><i></i></div>
+      <div class="ticker2" aria-hidden="true"><div>P-MOMIJI TANJOUSAI ／ <b>25th BIRTHDAY EDITION</b> ／ 2001.10.10 — 2026.10.10 ／ COMPLETE <b>1,010</b> ／ BIRTHDAY RUSH ／ P-MOMIJI TANJOUSAI ／ <b>25th BIRTHDAY EDITION</b> ／ 2001.10.10 — 2026.10.10 ／ COMPLETE <b>1,010</b> ／ BIRTHDAY RUSH ／ </div></div>
+      <div class="machcard"><img src="img/cabinet_safe.jpg" alt="25th BIRTHDAY PREMIUM MODEL の筐体"><div class="lbl"><span>PREMIUM MODEL</span><b>No.001</b></div></div>
+      <div class="bigk" aria-hidden="true">祝</div><div class="hudr" aria-hidden="true">BIRTHDAY ROUND ── 25<br><span>REEL : 2 ／ 5 ／ 2 5</span></div><div class="endtype"><div class="kick">P-MOMIJI TANJOUSAI ／ 25TH BIRTHDAY EDITION</div><span><i style="--i:0">今夜祝わないと</i></span><span><i style="--i:1">いけない<em>男</em>がいる。</i></span><small>HAPPY 25TH BIRTHDAY — YOSHINO KOYO</small></div>
+      <div class="vmeta">2001.10.10 — 2026.10.10 ／ No.001</div>
+      <div class="vcopy" data-split>今夜祝わないといけない男がいる。</div>
+      <div class="logowrap"><img class="kvlogo" src="img/kvlogo.webp" alt="誕生祭 Yoshino Koyo ヨシノコウヨウ 〜アラサーへの咆哮〜"><div class="shine"></div></div>
+      <div class="copyr">©2026 MOMIJI BIRTHDAY WORKS</div>
+      <div class="kvbadges"><span class="f" style="--i:0">COMPLETE機能搭載機</span><span class="g" style="--i:1">25th BIRTHDAY</span><span style="--i:2">V-ST</span><span style="--i:3">全国1台</span></div>
+      <div class="kvside">
+        <a class="bnr red" href="#spec" style="--i:0"><b>スペック</b>1,010玉 COMPLETE機能搭載</a>
+        <a class="bnr" href="#pv" style="--i:1"><b>CM公開</b>PROMOTION MOVIE はコチラ</a>
+        <a class="bnr" href="#hall" style="--i:2"><b>導入御礼</b>皆様のご来店ありがとうございました。</a>
+      </div>
+
+      <div class="shots" aria-hidden="true">
+        <div class="shot s1" data-d="1.15" data-flash>
+          <div class="b1"><div class="bigr jp">誕生祭</div><i class="bar b-a"></i><i class="bar b-b"></i><i class="bar b-c"></i><div class="meta">YOSHINO KOYO ／ 25TH BIRTHDAY ／ 2026.10.10</div><div class="cnt jp">25</div></div>
+          <div class="b2"><div class="badge25"><span>25</span></div><div class="ep mincho">第弐拾伍話</div><div class="t2 mincho"><span>アラサーへの</span><span class="big">咆哮</span></div><div class="by">YOSHINO KOYO</div></div>
+        </div>
+        <div class="shot s2" data-d=".38" data-flash><div class="lbl">THE BIRTHDAY BOY</div><div class="center"><div class="w en">KOYO</div></div></div>
+        <div class="shot s3" data-d=".42"><div class="wall jp" data-wall="確定"></div></div>
+        <div class="shot s4" data-d=".38"><div class="center"><div class="w jp">アラサー</div></div><div class="bar"></div></div>
+        <div class="shot s5" data-d=".45" data-flash data-burst><div class="duo" style="background-image:url(img/hero.jpg)"></div><div class="tint"></div><div class="scrim"></div><div class="ghost en a">ROAR ROAR ROAR ROAR</div><div class="ghost en b">ROAR ROAR ROAR ROAR</div><div class="center"><div class="w jp">咆哮</div></div></div>
+        <div class="shot s6" data-d=".42"><div class="duo cy" style="background-image:url(img/hero.jpg)"></div><div class="tint cy"></div><div class="scrim"></div><div class="center"><div class="w jp">誕生日</div></div><div class="sub">HAPPY 25TH BIRTHDAY</div></div>
+        <div class="shot s7" data-d=".45">
+          <div class="w jp" style="--i:0;left:6%;top:12%;font-size:5cqw">おめでとう</div>
+          <div class="w jp h" style="--i:1;left:58%;top:8%;font-size:4cqw">おめでとう</div>
+          <div class="w jp g" style="--i:2;left:18%;top:38%;font-size:11cqw">おめでとう</div>
+          <div class="w jp" style="--i:3;left:66%;top:66%;font-size:3.4cqw">おめでとう</div>
+          <div class="w jp h" style="--i:4;left:4%;top:72%;font-size:7cqw">おめでとう</div>
+          <div class="w jp" style="--i:5;left:72%;top:30%;font-size:2.6cqw">おめでとう</div>
+          <div class="w jp h" style="--i:6;left:44%;top:82%;font-size:2.4cqw">おめでとう</div>
+        </div>
+        <div class="shot sP" data-d="1.3" data-strobe data-flash><div class="ghostP en">FRIENDS FRIENDS FRIENDS</div><div class="strobe" id="strobe"><img id="strobeImg" src="img/pf1.jpg" alt=""></div><div class="ctr" id="strobeCnt">No.001</div><div class="pc" style="--i:0;--x:4%;--y:5%;--r:-6deg;--fx:-40cqw;--fy:-30cqw"><img src="img/pf1.jpg" alt=""></div><div class="pc" style="--i:1;--x:22%;--y:1%;--r:4deg;--fx:-10cqw;--fy:-60cqw"><img src="img/pf2.jpg" alt=""></div><div class="pc" style="--i:2;--x:41%;--y:4%;--r:-3deg;--fx:0cqw;--fy:-70cqw"><img src="img/pf3.jpg" alt=""></div><div class="pc" style="--i:3;--x:61%;--y:2%;--r:5deg;--fx:20cqw;--fy:-60cqw"><img src="img/pf4.jpg" alt=""></div><div class="pc" style="--i:4;--x:80%;--y:6%;--r:-4deg;--fx:40cqw;--fy:-30cqw"><img src="img/pf5.jpg" alt=""></div><div class="pc" style="--i:5;--x:2%;--y:62%;--r:5deg;--fx:-40cqw;--fy:30cqw"><img src="img/pf6.jpg" alt=""></div><div class="pc" style="--i:6;--x:21%;--y:67%;--r:-5deg;--fx:-20cqw;--fy:60cqw"><img src="img/pf7.jpg" alt=""></div><div class="pc" style="--i:8;--x:62%;--y:67%;--r:4deg;--fx:20cqw;--fy:60cqw"><img src="img/pf8.jpg" alt=""></div><div class="pc" style="--i:9;--x:81%;--y:61%;--r:-6deg;--fx:40cqw;--fy:30cqw"><img src="img/pf9.jpg" alt=""></div><div class="headP jp"><span>みんなで、</span><span>祝え。</span></div></div>
+        <div class="shot sV2" data-d="1.2"><div class="conc"></div><div class="kb" style="--i:0"><i>人</i><b>人</b></div><div class="kb" style="--i:1"><i>生</i><b>生</b></div><div class="kb red" style="--i:2"><i>確</i><b>確</b></div><div class="kb red" style="--i:3"><i>変</i><b>変</b></div><div class="line9"><span>人生、</span><em>確変</em><span>中。</span><u></u></div><div class="hud9">LIFE STATUS ／ 25</div></div>
+        <div class="shot sM" data-d="1.1"><div class="grid"></div>
+          <div class="mach"><img src="img/cabinet_safe.jpg" alt=""><i class="br a"></i><i class="br b"></i><i class="br c"></i><i class="br d"></i>
+            <div class="co" style="--i:0;left:50%;top:9%"><span class="ln"></span><span class="lb"><small>LOGO GIMMICK</small><b>落ちるロゴ</b></span></div>
+            <div class="co" style="--i:1;left:62%;top:42%"><span class="ln"></span><span class="lb"><small>LCD</small><b>4:3 液晶</b></span></div>
+            <div class="co" style="--i:2;left:96%;top:64%"><span class="ln"></span><span class="lb"><small>RIGHT ROUTE</small><b>右打ち</b></span></div>
+            <div class="co" style="--i:3;left:56%;top:88%"><span class="ln"></span><span class="lb"><small>PUSH BUTTON</small><b>演出ボタン</b></span></div>
+          </div>
+          <div class="ttlR"><span class="en"><i style="--i:0">THE</i></span><span class="en fill"><i style="--i:1">MACHINE</i></span><span class="mj mincho">25th BIRTHDAY PREMIUM MODEL</span></div></div>
+        <div class="shot s9" data-d=".75" data-flash data-count><div class="half l"></div><div class="half r"></div><div class="lab">COMPLETE</div><div class="center"><div class="num"><span id="cnt">0</span><small>玉</small></div></div></div>
+        </div>
+
+      <canvas id="fx"></canvas>
+      <div class="cutflash" id="cutflash"></div>
+      <div class="shock"></div>
+      <div class="flash"></div>
+    </div>
+    <div class="shotno" id="shotno" aria-live="off"></div>
+    <button class="skip" id="skip" type="button">SKIP ▶▶</button>
+    <button class="replay" id="replay" type="button">▶ もう一度見る</button>
+  </div>
+  <div class="cues">
+    <div class="cues-head"><b>演出番号</b><span>気になる所は番号で伝えてください。押すとその番号から再生します。</span><button type="button" id="notoggle">番号を隠す</button></div>
+    <div class="cuelist" id="cuelist"></div>
+  </div>
+</section>
+
+<!-- ================= PV ================= -->
+<section class="page" id="p-pv" data-title="PROMOTION MOVIE">
+  <div class="ttl"><h2>PROMOTION MOVIE</h2></div>
+  <div class="body">
+    <div class="pv" id="pv">
+      <div class="pvstage">
+        <div class="sc x1" data-no="1"><i class="lb t"></i><i class="lb b"></i><i class="grainv"></i>
+          <div class="k" data-d="2.4"><video muted playsinline preload="auto" src="cm/town.mp4"></video><p class="subt">二十五年前の、今日。</p></div>
+          <div class="k" data-d="2.1"><video muted playsinline preload="auto" src="cm/curtain.mp4"></video><p class="subt">ひとりの男が、生まれた。</p></div>
+          <div class="k" data-d="2.2"><video muted playsinline preload="auto" src="cm/ageroll.mp4"></video><p class="subt">そして今夜――</p></div>
+          <div class="k" data-d="1.9"><video muted playsinline preload="auto" src="cm/memories.mp4"></video><p class="subt">二十五歳に、なる。</p></div>
+        </div>
+        <div class="sc x2" data-no="2">
+          <div class="k" data-d="2.1" data-flash><video muted playsinline preload="auto" src="cm/title.mp4"></video></div>
+          <div class="k lgk" data-d="2.3" data-flash><div class="glow"></div><div class="spk"></div><div class="kick">P-MOMIJI TANJOUSAI ／ 25TH BIRTHDAY EDITION</div><img class="lg" src="img/kvlogo.webp" alt=""><div class="new">新台</div></div>
+        </div>
+        <div class="sc x3" data-no="3">
+          <div class="k" data-d=".7" data-flash><video muted playsinline preload="auto" src="cm/cgold.mp4"></video></div>
+          <div class="k" data-d=".7" data-flash><video muted playsinline preload="auto" src="cm/crb.mp4"></video></div>
+          <div class="k" data-d=".7" data-flash><video muted playsinline preload="auto" src="cm/cred.mp4"></video></div>
+          <div class="k" data-d=".7" data-flash><video muted playsinline preload="auto" src="cm/su5.mp4"></video></div>
+          <div class="k" data-d=".7" data-flash><video muted playsinline preload="auto" src="cm/bdf.mp4"></video></div>
+          <div class="k" data-d=".75" data-flash><video muted playsinline preload="auto" src="cm/sakusen.mp4"></video></div>
+          <div class="k" data-d=".75" data-flash><video muted playsinline preload="auto" src="cm/magi.mp4"></video></div>
+          <div class="k" data-d=".8" data-flash><video muted playsinline preload="auto" src="cm/bousou.mp4"></video></div>
+          <div class="k" data-d=".85" data-flash><video muted playsinline preload="auto" src="cm/grp.mp4"></video><span class="tagv">仲間が、総出演。</span></div>
+        </div>
+        <div class="sc x4" data-no="4">
+          <div class="k shk" data-d=".6" data-flash><video muted playsinline preload="auto" src="cm/reach1.mp4"></video></div>
+          <div class="k shk" data-d=".6" data-flash><video muted playsinline preload="auto" src="cm/reach2.mp4"></video></div>
+          <div class="k shk" data-d=".85" data-flash><video muted playsinline preload="auto" src="cm/reach3.mp4"></video></div>
+        </div>
+        <div class="sc x5" data-no="5">
+          <div class="k" data-d="1.5" data-flash><video muted playsinline preload="auto" src="cm/jp.mp4"></video></div>
+          <div class="k" data-d="1.6" data-flash><video muted playsinline preload="auto" src="cm/jp25.mp4"></video></div>
+          <div class="k" data-d="1.7" data-flash><video muted playsinline preload="auto" src="cm/rush.mp4"></video></div>
+        </div>
+        <div class="sc x6 c5" data-no="6">
+          <div class="k" data-d="7" data-flash><video class="dim" muted playsinline preload="auto" src="cm/tunnel.mp4"></video><img class="who6" src="img/person.webp" alt="">
+            <div class="sp sp1"><span class="lbl">初当り確率</span><span class="g3 n">1/319.7</span></div>
+            <div class="sp sp2"><span class="lbl">RUSH継続率</span><span class="g3 n">約81<small>%</small></span></div>
+            <div class="sp sp3"><span class="lbl">右打ち中</span><span class="g3 n">10R<small> 100%</small></span></div>
+            <div class="sp sp4"><span class="ribbon">これが、誕生祭スペック。</span><span class="sumrow"><span>約1/319.7</span><span>継続 約81%</span><span>右打ち 10R 100%</span></span></div>
+            <p class="fine5">※数値は遊び用の参考値です。</p></div>
+        </div>
+        <div class="sc x7" data-no="7">
+          <div class="k" data-d="2.6" data-flash><video class="dim2" muted playsinline preload="auto" src="cm/rainbow.mp4"></video><div class="rbwrap"><span class="rb n big">1,010<small>玉</small></span><span class="ribbon">COMPLETE機能搭載</span></div></div>
+        </div>
+        <div class="sc x8 c6" data-no="8">
+          <div class="k" data-d="3.4" data-flash><img class="cab6" src="img/cabinet_safe.jpg" alt=""><div class="call c-a">ロゴが<b>落ちる！</b></div><div class="call c-b">本人が<b>揺れる！</b></div><div class="mt6">GIMMICK</div></div>
+        </div>
+        <div class="sc x9" data-no="9">
+          <div class="k" data-d="1.5" data-flash><video muted playsinline preload="auto" src="cm/cake.mp4"></video><span class="tagv">誕生日ケーキの予告！</span></div>
+          <div class="k" data-d="1.5"><video muted playsinline preload="auto" src="cm/candle.mp4"></video><span class="tagv">ロウソク、もう1本！</span></div>
+          <div class="k" data-d="1.5"><video muted playsinline preload="auto" src="cm/bread.mp4"></video><span class="tagv">パンが、激熱！？</span></div>
+          <div class="k" data-d="1.5"><video muted playsinline preload="auto" src="cm/fridge.mp4"></video><span class="tagv">冷蔵庫を開けると…</span></div>
+        </div>
+        <div class="sc x10 c7" data-no="10">
+          <div class="k" data-d="5" data-flash><div class="shapes"><i class="tri a"></i><i class="tri b"></i><i class="cir a"></i><i class="cir b"></i><i class="sq a"></i><i class="sq b"></i></div>
+            <div class="conf"></div>
+            <img class="lg7" src="img/kvlogo.webp" alt="誕生祭 ヨシノコウヨウ"><img class="cab7" src="img/cabinet_safe.jpg" alt="筐体">
+            <div class="bdg7"><span>COMPLETE機能搭載機</span><span>全国1台</span></div><div class="date7"><b>2026.10.10</b> 導入開始</div></div>
+        </div>
+        <div class="sc x11 c8" data-no="11">
+          <div class="k" data-d="3.5"><div class="note8"><h4>お断り</h4><p>この映像は、友人の誕生日のために制作したオリジナルの宣伝映像です。実在の機種・メーカー・団体とは関係ありません。登場する数値は遊び用の参考値で、実際の遊技とは異なります。</p></div></div>
+        </div>
+        <div class="pvflash" id="pvflash"></div>
+      </div>
+      <button type="button" class="pvplay" id="pvplay" aria-label="CMを再生"><span>▶</span><b>PROMOTION MOVIE</b><small>約52秒・音なし</small></button>
+      <div class="pvbar"><span class="pvno" id="pvno">CM-10</span><div class="pvprog"><i id="pvprog"></i></div><span class="pvtime" id="pvtime">0:00</span><button type="button" id="pvreplay">最初から</button></div>
+    </div>
+    <p class="note" style="text-align:center">場面ごとに CM-1〜CM-11 の番号を表示しています。気になる場面は番号で伝えてください。</p>
+  </div>
+</section>
+
+<!-- ================= コンテンツ紹介 ================= -->
+<section class="page" id="p-intro" data-title="コンテンツ紹介">
+  <div class="ttl"><h2>コンテンツ紹介</h2></div>
+  <div class="body">
+    <div class="two">
+      <div class="panel"><div class="ph"><img src="img/face.webp" alt="ヨシノコウヨウ" loading="lazy" style="object-fit:contain;background:linear-gradient(180deg,#2b0f4a,#0a0614)"></div><div class="tx"><span class="chip">主役</span><h3>ヨシノコウヨウ</h3><p>2026年10月10日、25歳。本機はこの男の誕生を祝うためだけに作られた。</p></div></div>
+      <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
+        <h3 class="sub">図柄は、仲間たち。</h3>
+        <p>1〜9の図柄には、こうようゆかりの仲間たちが登場。7だけは金色の特別枠。</p>
+        <h3 class="sub">届いた映像、多数。</h3>
+        <p>液晶には、仲間たちから届いた映像を収録。どこで誰が出てくるかは秘密。</p>
+      </div>
+    </div>
+    <div class="cast">
+      <figure><img src="img/reel1.webp" alt="1図柄" loading="lazy"><figcaption>1図柄</figcaption></figure>
+      <figure><img src="img/reel2.webp" alt="2図柄" loading="lazy"><figcaption>2図柄</figcaption></figure>
+      <figure><img src="img/reel3.webp" alt="3図柄" loading="lazy"><figcaption>3図柄</figcaption></figure>
+      <figure><img src="img/reel4.webp" alt="4図柄" loading="lazy"><figcaption>4図柄</figcaption></figure>
+      <figure><img src="img/reel5.webp" alt="5図柄" loading="lazy"><figcaption>5図柄</figcaption></figure>
+      <figure><img src="img/reel6.webp" alt="6図柄" loading="lazy"><figcaption>6図柄</figcaption></figure>
+      <figure><img src="img/reel7.webp" alt="7図柄" loading="lazy"><figcaption style="color:var(--gold-d)">7図柄<span>金の特別枠</span></figcaption></figure>
+      <figure><img src="img/reel8.webp" alt="8図柄" loading="lazy"><figcaption>8図柄</figcaption></figure>
+      <figure><img src="img/reel9.webp" alt="9図柄" loading="lazy"><figcaption>9図柄</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= スペック ================= -->
+<section class="page" id="p-spec" data-title="スペック">
+  <div class="bday" aria-hidden="true"><i class="bl" style="--c:#ff4f7b;left:2%;top:640px;animation-delay:0s"></i><i class="bl" style="--c:#ffcf3a;left:5.5%;top:760px;animation-delay:1.2s"></i><i class="bl" style="--c:#29c4e6;left:1%;top:1080px;animation-delay:.6s"></i><i class="bl" style="--c:#ff4f7b;left:94%;top:700px;animation-delay:.9s"></i><i class="bl" style="--c:#8f6bff;left:90%;top:860px;animation-delay:1.8s"></i><i class="bl" style="--c:#ffcf3a;left:95%;top:1180px;animation-delay:.3s"></i></div>
+  <div class="mainv">
+    <div class="inner">
+      <div class="bands">
+        <div class="slab"><span class="k">初当り<br>確率</span><span class="v">約1/319.7</span></div>
+        <div class="slab"><span class="k">RUSH<br>継続率</span><span class="v">約81<small>%</small></span><span class="k">RUSH<br>直行率</span><span class="v">59<small>%</small></span></div>
+        <div class="slab"><span class="k">右打ち<br>時</span><span class="v">10R<small> 100%</small></span></div>
+        <div class="slab"><span class="k">誕生日<br>規定出玉</span><span class="v">1,010<small>玉</small></span></div>
+      </div>
+      <div class="figure">
+        <img src="img/person.webp" alt="ヨシノコウヨウ">
+        <div class="callout"><span class="a">これが…</span><span class="b">25年分を詰め込んだ<br>究極の誕生祭スペック!!</span></div>
+      </div>
+    </div>
+    <p class="fine">※継続率は引き戻しを含む理論値（約）です。※数値は遊び用の参考値で、実在機種とは関係ありません。</p>
+  </div>
+  <div class="ttl"><h2>スペック</h2></div>
+  <div class="body specb">
+    <div class="flags" aria-hidden="true"><svg viewBox="0 0 1600 40" preserveAspectRatio="none"><path d="M0 4 L1600 4" stroke="rgba(255,255,255,.5)" stroke-width="2"/><polygon points="2,4 38,4 20,34" fill="#ff4f7b"/><polygon points="42,4 78,4 60,34" fill="#ffcf3a"/><polygon points="82,4 118,4 100,34" fill="#29c4e6"/><polygon points="122,4 158,4 140,34" fill="#8f6bff"/><polygon points="162,4 198,4 180,34" fill="#ffffff"/><polygon points="202,4 238,4 220,34" fill="#ff4f7b"/><polygon points="242,4 278,4 260,34" fill="#ffcf3a"/><polygon points="282,4 318,4 300,34" fill="#29c4e6"/><polygon points="322,4 358,4 340,34" fill="#8f6bff"/><polygon points="362,4 398,4 380,34" fill="#ffffff"/><polygon points="402,4 438,4 420,34" fill="#ff4f7b"/><polygon points="442,4 478,4 460,34" fill="#ffcf3a"/><polygon points="482,4 518,4 500,34" fill="#29c4e6"/><polygon points="522,4 558,4 540,34" fill="#8f6bff"/><polygon points="562,4 598,4 580,34" fill="#ffffff"/><polygon points="602,4 638,4 620,34" fill="#ff4f7b"/><polygon points="642,4 678,4 660,34" fill="#ffcf3a"/><polygon points="682,4 718,4 700,34" fill="#29c4e6"/><polygon points="722,4 758,4 740,34" fill="#8f6bff"/><polygon points="762,4 798,4 780,34" fill="#ffffff"/><polygon points="802,4 838,4 820,34" fill="#ff4f7b"/><polygon points="842,4 878,4 860,34" fill="#ffcf3a"/><polygon points="882,4 918,4 900,34" fill="#29c4e6"/><polygon points="922,4 958,4 940,34" fill="#8f6bff"/><polygon points="962,4 998,4 980,34" fill="#ffffff"/><polygon points="1002,4 1038,4 1020,34" fill="#ff4f7b"/><polygon points="1042,4 1078,4 1060,34" fill="#ffcf3a"/><polygon points="1082,4 1118,4 1100,34" fill="#29c4e6"/><polygon points="1122,4 1158,4 1140,34" fill="#8f6bff"/><polygon points="1162,4 1198,4 1180,34" fill="#ffffff"/><polygon points="1202,4 1238,4 1220,34" fill="#ff4f7b"/><polygon points="1242,4 1278,4 1260,34" fill="#ffcf3a"/><polygon points="1282,4 1318,4 1300,34" fill="#29c4e6"/><polygon points="1322,4 1358,4 1340,34" fill="#8f6bff"/><polygon points="1362,4 1398,4 1380,34" fill="#ffffff"/><polygon points="1402,4 1438,4 1420,34" fill="#ff4f7b"/><polygon points="1442,4 1478,4 1460,34" fill="#ffcf3a"/><polygon points="1482,4 1518,4 1500,34" fill="#29c4e6"/><polygon points="1522,4 1558,4 1540,34" fill="#8f6bff"/><polygon points="1562,4 1598,4 1580,34" fill="#ffffff"/></svg></div>
+    <div class="kpis">
+      <div class="kpi"><span class="kl">大当り確率（通常時）</span><span class="kv2">1/319.7</span></div>
+      <div class="kpi"><span class="kl">大当り確率（ST中）</span><span class="kv2">1/99.4</span></div>
+      <div class="kpi"><span class="kl">ST回数</span><span class="kv2">163<small>回転</small></span></div>
+      <div class="kpi hot"><span class="kl">RUSH継続率</span><span class="kv2">約81<small>%</small></span></div>
+      <div class="kpi gold"><span class="kl">COMPLETE</span><span class="kv2">1,010<small>玉</small></span></div>
+    </div>
+    <h3 class="sub">大当り振り分け</h3>
+    <div class="dist2">
+      <div class="grp"><div class="gname">ヘソ<small>通常時</small></div>
+        <div class="rows">
+          <div class="row"><span class="rn">10R ＋ ST163回</span><span class="rbar"><i style="width:3%"></i></span><span class="rp">3%</span></div>
+          <div class="row"><span class="rn">3R ＋ ST163回</span><span class="rbar"><i style="width:56%"></i></span><span class="rp">56%</span></div>
+          <div class="row"><span class="rn">3R ＋ 時短100回</span><span class="rbar"><i style="width:41%" class="g"></i></span><span class="rp">41%</span></div>
+        </div></div>
+      <div class="grp"><div class="gname">電チュー<small>右打ち中</small></div>
+        <div class="rows">
+          <div class="row"><span class="rn">10R ＋ ST163回</span><span class="rbar"><i style="width:100%"></i></span><span class="rp">100%</span></div>
+        </div></div>
+    </div>
+    <h3 class="sub">基本スペック</h3>
+    <dl class="spec2">
+      <div><dt>タイプ</dt><dd>V-ST</dd></div>
+      <div><dt>時短回数</dt><dd>100回転</dd></div>
+      <div><dt>RUSH直行率</dt><dd>59%</dd></div>
+      <div><dt>実質RUSH突入率</dt><dd>約70%</dd></div>
+      <div><dt>賞球数</dt><dd>3 &amp; 1 &amp; 15</dd></div>
+      <div><dt>カウント</dt><dd>10カウント</dd></div>
+      <div><dt>1R出玉</dt><dd>約150玉</dd></div>
+      <div><dt>保留</dt><dd>特図1・特図2 各4個</dd></div>
+    </dl>
+    <p class="note">※出玉は払い出しベースの目安です。※数値は遊び用の参考値で、実在機種とは関係ありません。</p>
+  </div>
+</section>
+
+<!-- ================= ゲームフロー ================= -->
+<section class="page" id="p-flow" data-title="ゲームフロー">
+  <div class="ttl"><h2>ゲームフロー</h2></div>
+  <div class="body">
+    <div class="flow">
+      <div class="fl"><h3>通常時</h3><p>左打ちでヘソを狙う<br>1/319.7</p></div><div class="ar"></div>
+      <div class="fl"><h3>初当り</h3><p>3R or 10R<br>V入賞でST獲得</p></div><div class="ar"></div>
+      <div class="fl hot"><h3>BIRTHDAY RUSH</h3><p>ST163回転・右打ち<br>大当りは10R 100%</p></div>
+    </div>
+    <div class="paths">
+      <div><b>41%</b>3R + 時短100回転。引き戻せばRUSHへ。</div>
+      <div class="r"><b>81%</b>RUSH中は1/99.4を163回転で狙う。継続率は約81%。</div>
+      <div class="g"><b>1,010</b>大当り出玉が1,010玉に届いた時、何かが起きる。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 筐体紹介 ================= -->
+<section class="page" id="p-cabinet" data-title="筐体紹介">
+  <div class="ttl"><h2>筐体紹介</h2></div>
+  <div class="body">
+    <div class="two">
+      <div class="panel"><img src="img/cabinet_safe.jpg" alt="25th BIRTHDAY PREMIUM MODEL の筐体" loading="lazy"></div>
+      <div class="tbl"><table>
+        <tr><th>モデル名</th><td>25th BIRTHDAY PREMIUM MODEL</td></tr>
+        <tr><th>役物</th><td>本人役物（せり出し・振動・揺れ）</td></tr>
+        <tr><th>ロゴギミック</th><td>上部ロゴが液晶へ落下し映像と合流</td></tr>
+        <tr><th>液晶</th><td>4:3</td></tr>
+        <tr><th>演出ボタン</th><td>PUSH・長押し自動連打対応</td></tr>
+        <tr><th>盤面</th><td>左打ち＋右打ち（右チャッカー・アタッカー）</td></tr>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 導入情報 ================= -->
+<section class="page" id="p-hall" data-title="導入情報">
+  <div class="ttl"><h2>導入情報</h2></div>
+  <div class="body">
+    <div class="tbl" style="max-width:760px;margin:0 auto;width:100%"><table>
+      <tr><th>機種名</th><td>Pもみじ誕生祭 ヨシノコウヨウ 〜アラサーへの咆哮〜</td></tr>
+      <tr><th>導入開始日</th><td>2026年10月10日（土）</td></tr>
+      <tr><th>設置台数</th><td>全国 <strong>1</strong> 台</td></tr>
+      <tr><th>販売</th><td>非売品</td></tr>
+    </table></div>
+    <p class="lead">導入初日にご来店いただいた皆様、ありがとうございました。</p>
+  </div>
+</section>
+
+<!-- ================= 初めて ================= -->
+<section class="page" id="p-beginner" data-title="初めての誕生祭">
+  <div class="ttl"><h2>初めての誕生祭</h2></div>
+  <div class="body">
+    <p class="lead">玉は自動で打ち出されます。図柄が3つそろえば大当り。PUSHの合図が出たら演出ボタンを押してください。</p>
+    <div class="keys">
+      <div><kbd>Space</kbd>発射のON / OFF</div>
+      <div><kbd>Enter / B</kbd>演出ボタン（PUSH）</div>
+      <div><kbd>← →</kbd>発射強さの微調整</div>
+      <div><kbd>L / R</kbd>左打ち40% / 右打ち95%</div>
+      <div><kbd>Esc</kbd>一時停止してタイトルへ</div>
+      <div><kbd>Z</kbd>液晶の拡大</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= スタッフ ================= -->
+<section class="page" id="p-staff" data-title="スタッフ">
+  <div class="ttl"><h2>スタッフ</h2></div>
+  <div class="body">
+    <div class="credits">
+      <div class="cr1"><span class="role">発案</span><span class="name">Nishi Ryota</span></div>
+      <div class="cr1"><span class="role">システム</span><span class="name">Nishi Ryota</span></div>
+      <div class="cr1"><span class="role">映像制作・アセット制作・撮影</span><span class="name">Nagyo</span><span class="name">Izumi</span></div>
+    </div>
+    <p class="crend">HAPPY 25TH BIRTHDAY, KOYO.</p>
+  </div>
+</section>
+</main>
+
+<a class="pagetop" href="#pagetop" id="totop">▲ PAGE TOP</a>
+<footer>
+  <div class="warn">パチンコ風ゲームは適度に楽しむ遊びです。誕生日を祝う気持ちにはのめり込みましょう。</div>
+  <p class="note">本サイトは友人の誕生日のために制作したオリジナルゲームの紹介ページです。実在のパチンコ機・メーカー・団体とは関係ありません。掲載画面は開発中のもので、数値は全て参考値です。金銭・景品のやり取りは一切ありません。</p>
+  <div class="cr">©2026 MOMIJI BIRTHDAY WORKS</div>
+</footer>
+
+<script>
+(function(){
+  var pages=["top","pv","intro","spec","flow","cabinet","hall","beginner","staff"];
+  var kv=document.getElementById("kv");
+  var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* 文字を1字ずつに分ける */
+  document.querySelectorAll("[data-split]").forEach(function(el){
+    var t=el.textContent,html="",n=0;
+    for(var k=0;k<t.length;k++){var c=t[k];
+      if(c===" "){html+=" ";continue}
+      var s='<span class="ch" style="--i:'+n+'">'+c+'</span>';
+      html+=(el.classList.contains("vcopy")&&"二十五".indexOf(c)>=0)?"<em>"+s+"</em>":s;n++}
+    el.innerHTML=html;
+  });
+  /* 単語の壁 */
+  document.querySelectorAll("[data-wall]").forEach(function(el){
+    var w=el.getAttribute("data-wall"),h="",n=0;
+    for(var r=0;r<5;r++){h+='<div class="row">';for(var c=0;c<6;c++){h+='<span style="--i:'+(n++)+'">'+w+'</span>'}h+="</div>"}
+    el.innerHTML=h;
+  });
+
+  /* 砕ける文字の破片 */
+  document.querySelectorAll(".shatter").forEach(function(el){
+    var a=el.getAttribute("data-a"),b=el.getAttribute("data-b"),h="",N=4,M=3;
+    for(var i=0;i<N;i++)for(var j=0;j<M;j++){
+      var x0=i*100/N,x1=(i+1)*100/N,y0=j*100/M,y1=(j+1)*100/M,jx=(Math.random()-.5)*10,jy=(Math.random()-.5)*10;
+      var poly="polygon("+x0+"% "+y0+"%,"+(x1+jx)+"% "+(y0+jy)+"%,"+x1+"% "+y1+"%,"+(x0-jx)+"% "+(y1-jy)+"%)";
+      var cx=(x0+x1)/2-50,cy=(y0+y1)/2-50;
+      h+='<div class="frag" style="clip-path:'+poly+';--x:'+(cx*1.6)+'cqw;--y:'+(cy*1.2)+'cqw;--r:'+((Math.random()-.5)*90)+'deg"><span>'+a+'</span><span>'+b+'</span></div>';
+    }
+    el.innerHTML=h;
+  });
+  /* 粒子（火花・紙吹雪・光の玉） */
+  var cv=document.getElementById("fx"),ctx=cv.getContext("2d"),P=[],W=0,H=0,dpr=1,running=false,loopId=0,ambient=false,timers=[];
+  var COLORS=["#ffffff","#e8001c","#ffffff","#ff5a6c","#9a9a9a"];
+  function size(){var r=kv.getBoundingClientRect();dpr=Math.min(2,window.devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  function spark(x,y,n,spd){for(var i=0;i<n;i++){var a=Math.random()*Math.PI*2,v=rnd(.3,1)*spd;
+    P.push({t:"s",x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:rnd(30,60),age:0,c:COLORS[i%4],w:rnd(1,2.4)})}}
+  function confetti(n){for(var i=0;i<n;i++)P.push({t:"c",x:rnd(0,W),y:rnd(-H*.3,-10),vx:rnd(-.6,.6),vy:rnd(1.2,2.6),r:rnd(0,6.28),vr:rnd(-.2,.2),s:rnd(4,8),life:400,age:0,c:COLORS[i%5]})}
+  function bokeh(){P.push({t:"b",x:rnd(0,W),y:H+20,vx:rnd(-.2,.2),vy:-rnd(.3,.9),s:rnd(3,14),life:rnd(260,480),age:0,c:COLORS[Math.floor(rnd(0,5))]})}
+  function frame(my){
+    if(!running||my!==loopId)return;
+    ctx.clearRect(0,0,W,H);
+    if(ambient){if(Math.random()<.18)bokeh();if(Math.random()<.04)confetti(1)}
+    for(var i=P.length-1;i>=0;i--){var p=P[i];p.age++;
+      if(p.age>p.life||p.y>H+40){P.splice(i,1);continue}
+      var k=1-p.age/p.life;
+      if(p.t==="s"){p.x+=p.vx;p.y+=p.vy;p.vx*=.95;p.vy=p.vy*.95+.06;
+        ctx.strokeStyle=p.c;ctx.globalAlpha=k;ctx.lineWidth=p.w;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x-p.vx*4,p.y-p.vy*4);ctx.stroke()}
+      else if(p.t==="c"){p.x+=p.vx+Math.sin(p.age/14)*.6;p.y+=p.vy;p.r+=p.vr;
+        ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.globalAlpha=.9;ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2*Math.abs(Math.cos(p.age/8))+1);ctx.restore()}
+      else{p.x+=p.vx;p.y+=p.vy;var a=Math.min(1,p.age/40)*k*.55;
+        var g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.s);g.addColorStop(0,p.c);g.addColorStop(1,"transparent");
+        ctx.globalAlpha=a;ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,6.283);ctx.fill()}
+    }
+    ctx.globalAlpha=1;requestAnimationFrame(function(){frame(my)});
+  }
+  function startFx(){size();if(!running){running=true;var my=++loopId;requestAnimationFrame(function(){frame(my)})}}
+  function at(s,f){timers.push(setTimeout(f,s*1000))}
+
+  kv.addEventListener("pointermove",function(e){var r=kv.getBoundingClientRect();
+    kv.style.setProperty("--hx",((e.clientX-r.left)/r.width*100)+"%");kv.style.setProperty("--hy",((e.clientY-r.top)/r.height*100)+"%")});
+
+  /* ショットを順に切り替える */
+  var shots=[].slice.call(kv.querySelectorAll(".shot")),cf=document.getElementById("cutflash"),cnt=document.getElementById("cnt");
+  function countUp(ms){var t0=performance.now();(function step(){var k=Math.min(1,(performance.now()-t0)/ms),e=1-Math.pow(1-k,3);
+    cnt.textContent=Math.round(1010*e).toLocaleString("en-US");if(k<1&&running)requestAnimationFrame(step)})()}
+  var CUES=["赤い衝撃「誕生祭」→ 黒い題字「第弐拾伍話 アラサーへの咆哮」","写真が透ける「KOYO」","単語の壁「確定」","横ブレ「アラサー」","ROAR＋「咆哮」","字間が詰まる「誕生日」","散らばる「おめでとう」","写真の連打 → 寄せ書き「みんなで、祝え。」","漢字の叩きつけ「人・生・確・変」→「人生、確変中。」","筐体と注釈「THE MACHINE」","カウント「1,010玉」","完成：閃光・赤いパネル・本人登場","完成：コピー「今夜祝わないといけない男がいる。」・ロゴ","完成：バッジ・筐体カード・下の帯","完成：ずっと動く背景（走査線・粒子・ロゴの光・流れる帯）"];
+  var LBL=["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15"],R0=CUES.length-4;
+  var noEl=document.getElementById("shotno"),list=document.getElementById("cuelist");
+  function pad(n){return (n<10?"0":"")+n}
+  function cue(i){noEl.innerHTML="<b>#"+LBL[i]+"</b>"+CUES[i];
+    list.querySelectorAll("button").forEach(function(btn,k){btn.classList.toggle("now",k===i)})}
+  CUES.forEach(function(c,i){var btn=document.createElement("button");btn.type="button";btn.innerHTML="<b>"+LBL[i]+"</b>"+c;
+    btn.addEventListener("click",function(){playKV(i);kv.scrollIntoView({behavior:"smooth",block:"start"})});list.appendChild(btn)});
+  /* #08B 写真の連打 */
+  var STROBE=["pf1.jpg","pf2.jpg","pf3.jpg","pf4.jpg","pf5.jpg","pf6.jpg","pf7.jpg","pf8.jpg","pf9.jpg"];
+  STROBE.forEach(function(f){var im=new Image();im.src="img/"+f});
+  function startStrobe(){
+    var img=document.getElementById("strobeImg"),c=document.getElementById("strobeCnt"),st=document.getElementById("strobe"),k=0;
+    (function step(){
+      if(k>=STROBE.length)return;
+      img.src="img/"+STROBE[k];c.textContent="No."+("00"+(k+1)).slice(-3);st.classList.toggle("hit",k%3===2);k++;
+      timers.push(setTimeout(step,62));
+    })();
+  }
+  function reveal(){
+    timers.forEach(clearTimeout);timers=[];
+    shots.forEach(function(s){s.classList.remove("on")});
+    kv.classList.remove("reveal");void kv.offsetWidth;
+    kv.classList.add("reveal");startFx();cue(R0);
+    spark(W*.58,H*.52,160,20);confetti(70);ambient=true;
+    at(.4,function(){cue(R0+1)});
+    at(.45,function(){spark(W*.22,H*.68,70,12)});
+    at(.85,function(){cue(R0+2)});
+    at(1.9,function(){cue(R0+3)});
+  }
+  function playKV(from){
+    from=from||0;
+    timers.forEach(clearTimeout);timers=[];P=[];ambient=false;
+    kv.classList.remove("reveal","rest");shots.forEach(function(s){s.classList.remove("on")});void kv.offsetWidth;
+    if(reduce&&from===0){kv.classList.add("rest");cue(R0+3);return}
+    startFx();
+    if(from>=R0){reveal();if(from>R0)at(0,function(){cue(from)});return}
+    var t=0;
+    shots.forEach(function(s,i){
+      if(i<from)return;
+      var d=parseFloat(s.getAttribute("data-d"));
+      at(t,function(){
+        shots.forEach(function(o){o.classList.remove("on")});s.classList.add("on");cue(i);
+        if(s.hasAttribute("data-flash")){cf.classList.remove("on");void cf.offsetWidth;cf.classList.add("on")}
+        if(s.hasAttribute("data-burst"))spark(W/2,H/2,90,16);
+        if(s.hasAttribute("data-strobe"))startStrobe();
+        if(s.hasAttribute("data-count")){cnt.textContent="0";countUp(d*1000*.75);at(d*.75,function(){spark(W/2,H/2,120,18)})}
+      });
+      t+=d;
+    });
+    at(t,reveal);
+  }
+  /* 番号の表示切り替え */
+  var NK="momiji-shotno-hide",tg=document.getElementById("notoggle");
+  function setNo(hide){kv.classList.toggle("nohud",hide);tg.textContent=hide?"番号を表示":"番号を隠す";try{hide?localStorage.setItem(NK,"1"):localStorage.removeItem(NK)}catch(e){}}
+  var hid=false;try{hid=localStorage.getItem(NK)==="1"}catch(e){}
+  setNo(hid);tg.addEventListener("click",function(){setNo(!kv.classList.contains("nohud"))});
+  window.addEventListener("resize",function(){if(running)size()});
+  document.getElementById("skip").addEventListener("click",reveal);
+
+  /* PROMOTION MOVIE（映像クリップをつなぐ） */
+  var pv=document.getElementById("pv"),pvscs=[].slice.call(pv.querySelectorAll(".sc")),pvks=[].slice.call(pv.querySelectorAll(".k")),pvT=[],pvRaf=0,pvTotal=0,pvfl=document.getElementById("pvflash");
+  pvks.forEach(function(k){pvTotal+=parseFloat(k.getAttribute("data-d"))});
+  function fmt(t){t=Math.max(0,Math.round(t));return Math.floor(t/60)+":"+("0"+(t%60)).slice(-2)}
+  function pvCut(k,play){
+    var sc=k.parentElement;
+    pvscs.forEach(function(s){s.classList.toggle("on",s===sc)});
+    pvks.forEach(function(o){if(o!==k){o.classList.remove("on");o.querySelectorAll("video").forEach(function(v){v.pause()})}});
+    k.classList.remove("on");void k.offsetWidth;k.classList.add("on");
+    document.getElementById("pvno").textContent="CM-"+sc.getAttribute("data-no");
+    k.querySelectorAll("video").forEach(function(v){try{v.currentTime=0}catch(e){} if(play){var p=v.play();if(p&&p.catch)p.catch(function(){})}});
+    if(play&&k.hasAttribute("data-flash")){pvfl.classList.remove("on");void pvfl.offsetWidth;pvfl.classList.add("on")}
+  }
+  var pvEnd=pv.querySelector(".x10 .k");
+  function pvRest(){pvT.forEach(clearTimeout);pvT=[];cancelAnimationFrame(pvRaf);pv.classList.remove("playing");pvCut(pvEnd,false);
+    document.getElementById("pvprog").style.width="0";document.getElementById("pvtime").textContent="0:00 / "+fmt(pvTotal)}
+  function pvPlay(){pvT.forEach(clearTimeout);pvT=[];pv.classList.add("playing");
+    var t=0;pvks.forEach(function(k){pvT.push(setTimeout(function(){pvCut(k,true)},t*1000));t+=parseFloat(k.getAttribute("data-d"))});
+    pvT.push(setTimeout(pvRest,t*1000));
+    var t0=performance.now();(function tick(){var e=(performance.now()-t0)/1000;
+      document.getElementById("pvprog").style.width=Math.min(100,e/pvTotal*100)+"%";document.getElementById("pvtime").textContent=fmt(e)+" / "+fmt(pvTotal);
+      if(e<pvTotal&&pv.classList.contains("playing"))pvRaf=requestAnimationFrame(tick)})()}
+  document.getElementById("pvplay").addEventListener("click",pvPlay);
+  document.getElementById("pvreplay").addEventListener("click",pvPlay);
+  pvRest();
+  /* ページ切り替え */
+  function show(id){
+    if(pages.indexOf(id)<0)id="top";
+    pages.forEach(function(p){document.getElementById("p-"+p).classList.toggle("on",p===id)});
+    document.querySelectorAll(".gnav a").forEach(function(a){
+      if(a.getAttribute("href")==="#"+id)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+    if(id==="top"){var cq=/[?&]cue=(\d+)/.exec(location.search);playKV(cq?+cq[1]:0)}else{running=false;timers.forEach(clearTimeout)}
+    if(id!=="pv")pvRest();
+  }
+  function current(){return (location.hash||"#top").slice(1)}
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener("click",function(e){
+      var id=a.getAttribute("href").slice(1);
+      if(id==="pagetop"){e.preventDefault();window.scrollTo({top:0,behavior:"smooth"});return}
+      if(pages.indexOf(id)<0)return;
+      e.preventDefault();
+      try{history.replaceState(null,"","#"+id)}catch(err){}
+      show(id);window.scrollTo(0,0);
+    });
+  });
+  window.addEventListener("hashchange",function(){show(current())});
+  document.getElementById("replay").addEventListener("click",function(){playKV(0)});
+  show(current());
+})();
+</script>
+
+</html>
